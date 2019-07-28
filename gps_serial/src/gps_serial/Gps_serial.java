@@ -14,7 +14,7 @@ import com.pi4j.util.Console;
 */
 import java.io.IOException;
 //import java.util.Date;
-import jssc.SerialPortException;
+//import jssc.SerialPortException;
 //import jssc.SerialPort;
 //import jssc.SerialPortException;
 
@@ -27,20 +27,21 @@ public class Gps_serial {
     private static InputStream inStream;
     /**
      * @param args the command line arguments
+     * @throws java.lang.InterruptedException
+     * @throws java.io.IOException
      */
-    public static void main(String[] args) throws InterruptedException, SerialPortException, IOException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         // TODO code application logic here        
         
          Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpsapp/gpspruebacon/readserial.py" });    
         p.waitFor();                                                                                                             
 
+        /*
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {                                
           String line;                                                                                                         
           while ((line = br.readLine()) != null)  {                                                                            
              System.out.println(line);                                                                                        
           }                                                                                                                    
-      }   
-        
-    }
-        
+          */
+      }       
 }
