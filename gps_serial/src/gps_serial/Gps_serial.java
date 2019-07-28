@@ -36,12 +36,13 @@ public class Gps_serial {
          Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpsapp/gpspruebacon/readserial.py" });    
         p.waitFor();                                                                                                             
 
-        /*
+        
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {                                
           String line;                                                                                                         
           while ((line = br.readLine()) != null)  {                                                                            
              System.out.println(line);                                                                                        
           }                                                                                                                    
-          */
-      }       
+        
+      } 
+    }
 }
