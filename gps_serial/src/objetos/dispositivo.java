@@ -5,10 +5,6 @@
  */
 package objetos;
 
-/**
- *
- * @author Julian
- */
 public class dispositivo {
     
     private int id;
