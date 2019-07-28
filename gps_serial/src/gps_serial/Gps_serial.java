@@ -8,7 +8,6 @@ package gps_serial;
 import bd.ConexionBD;
 import java.io.*;
 import java.sql.Timestamp;
-import java.util.concurrent.TimeUnit;
 import objetos.*;
 //import java.util.*;
 
@@ -22,7 +21,6 @@ public class Gps_serial {
      */
     public static void main(String[] args) throws InterruptedException, IOException {
         // TODO code application logic here        
-        
         Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/readserial.py" });
         p.waitFor();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
@@ -40,13 +38,13 @@ public class Gps_serial {
                     System.out.println("Latitud:\t"+latitud);
                     System.out.println("Longitud:\t"+longitud);
                     System.out.println("Altura:\t\t"+altura+" m");
-                    ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
-                    ConexionBD c = new ConexionBD();
                     try{
+                        ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
+                        ConexionBD c = new ConexionBD();
                         c.conectar();
                         c.ingresarUbicacion(u);
                     }catch(Exception e){
-                        System.out.println("Error ");
+                        System.out.println("Error: "+e);
                     }
                 }else{
                 System.out.println("Error en la trama, no es compatible...");
