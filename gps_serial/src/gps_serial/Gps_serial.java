@@ -39,12 +39,15 @@ public class Gps_serial {
         
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {                                
           String line;                                                                                                         
-          while ((line = br.readLine()) != null)  {                                                                            
-             System.out.println("Valor obtenido: "+line);                                                                                      
+          while ((line = br.readLine()) != null)  {                                                                               
+              System.out.println("Valor obtenido: "+line);                                                                                      
           }
-          String[] datos = line.split(",");
-          String hora = datos[0];
+          String[] datos;
+          datos = line.split(",");
+          String hora = datos[1];
+          String dato2 = datos[2];
           System.out.println(hora);
+            System.out.println(dato2);
       } 
     }
 }
