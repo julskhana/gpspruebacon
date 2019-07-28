@@ -26,6 +26,8 @@ public class Gps_serial {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        /*
          try {
             CommPortIdentifier portId = CommPortIdentifier.getPortIdentifier("/dev/ttyS80");
             SerialPort serialPort = (SerialPort) portId.open("GPS application", 5000);
@@ -43,6 +45,7 @@ public class Gps_serial {
             }
         } catch (Exception ex) {
                 ex.printStackTrace();
-        }
+        }*/
+        System.out.println("prueba 1");
     }    
 }
