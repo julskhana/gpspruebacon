@@ -40,9 +40,8 @@ public class Gps_serial {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {                                
           String line;                                                                                                         
           while ((line = br.readLine()) != null)  {                                                                            
-             System.out.println(line);                                                                                        
+             System.out.println("Valor obtenido"+line);                                                                                        
           }                                                                                                                    
-        
       } 
     }
 }
