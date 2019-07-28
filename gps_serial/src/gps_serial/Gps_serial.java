@@ -7,13 +7,15 @@ package gps_serial;
 
 import java.io.*;
 import java.util.*;
-
+/*
 import com.pi4j.io.serial.*;
 import com.pi4j.util.CommandArgumentParser;
 import com.pi4j.util.Console;
-
+*/
 import java.io.IOException;
 import java.util.Date;
+import jssc.SerialPort;
+import jssc.SerialPortException;
 
 /**
  *
@@ -25,8 +27,22 @@ public class Gps_serial {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, SerialPortException {
         // TODO code application logic here        
+        
+        SerialPort serialPort = new SerialPort("/dev/ttyUSB0");
+        serialPort.openPort();//Open serial port
+        serialPort.setParams(4800, 8, 1, 0);//Set params.
+        while(true) {
+            byte[] buffer = serialPort.readBytes(10);
+                if(buffer!=null) {
+                for(byte b:buffer) {
+                System.out.print(b);
+        }
+    } 
+}
+        
+        /*
         System.out.println("Leer desde Serial");
         
         final Console console = new Console();
@@ -100,6 +116,6 @@ public class Gps_serial {
         catch(IOException ex) {
             console.println(" ==>> SERIAL SETUP FAILED : " + ex.getMessage());
             return;
-        }
+        }*/
     }
 }
