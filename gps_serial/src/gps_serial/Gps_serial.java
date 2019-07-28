@@ -44,11 +44,11 @@ public class Gps_serial {
           }
           String[] datos = line.split(",");
           String hora = datos[1];
-          String latitud = datos[2];
-          String longitud = datos[3];
+          String dia = datos[2];
+          String mes = datos[3];
+          String anio = datos[4];
           System.out.println("tiempo:"+hora);
-          System.out.println("latitud:"+latitud);
-          System.out.println("longitud:"+longitud);
+          System.out.println("fecha:"+dia+"/"+mes+"/"+anio);
       } 
     }
 }
