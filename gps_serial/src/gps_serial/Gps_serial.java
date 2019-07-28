@@ -37,7 +37,7 @@ public class Gps_serial {
                     System.out.println("Tiempo:\t"+horafecha);
                     System.out.println("Latitud:\t"+latitud);
                     System.out.println("Longitud:\t"+longitud);
-                    System.out.println("Altura:\t"+altura);
+                    System.out.println("Altura:\t\t"+altura);
                 }
             }
         } 
