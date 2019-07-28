@@ -5,9 +5,11 @@
  */
 package gps_serial;
 
+import bd.ConexionBD;
 import java.io.*;
 import java.sql.Timestamp;
 import java.util.concurrent.TimeUnit;
+import objetos.ubicacion;
 //import java.util.*;
 
 public class Gps_serial {
@@ -38,6 +40,14 @@ public class Gps_serial {
                     System.out.println("Latitud:\t"+latitud);
                     System.out.println("Longitud:\t"+longitud);
                     System.out.println("Altura:\t\t"+altura+" m");
+                    ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
+                    ConexionBD c = new ConexionBD();
+                    try{
+                        c.conectar();
+                        c.ingresarUbicacion(u);
+                    }catch(Exception e){
+                        System.out.println("Error ");
+                    }
                 }else{
                 System.out.println("Error en la trama, no es compatible...");
                 }
@@ -47,6 +57,7 @@ public class Gps_serial {
     
     //funciones
     //datos para recoger desde modulo gps: latitud, longitud, altitud
+    //METODO PARA GENERAR TIEMPO DE EJECUCION
     static String generertiempo(){
         Timestamp tiempo = new Timestamp(System.currentTimeMillis());
         return tiempo.toString();
