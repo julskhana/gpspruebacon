@@ -39,6 +39,8 @@ public class Gps_serial {
                     System.out.println("Longitud:\t"+longitud);
                     System.out.println("Altura:\t\t"+altura);
                 }
+            }else{
+                System.out.println("Error en la trama, no es compatible...");
             }
         } 
     }
