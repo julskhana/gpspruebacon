@@ -43,10 +43,12 @@ public class Gps_serial {
               System.out.println("Valor obtenido: "+line);                                                                                      
           }
           String[] datos = line.split(",");
-          String hora = datos[0];
-          String dato2 = datos[1];
-          System.out.println(hora);
-          System.out.println(dato2);
+          String hora = datos[1];
+          String latitud = datos[2];
+          String longitud = datos[3];
+          System.out.println("tiempo:"+hora);
+          System.out.println("latitud:"+latitud);
+          System.out.println("longitud:"+longitud);
       } 
     }
 }
