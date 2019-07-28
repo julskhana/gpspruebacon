@@ -6,16 +6,17 @@
 package gps_serial;
 
 import java.io.*;
-import java.util.*;
+//import java.util.*;
 /*
 import com.pi4j.io.serial.*;
 import com.pi4j.util.CommandArgumentParser;
 import com.pi4j.util.Console;
 */
 import java.io.IOException;
-import java.util.Date;
-import jssc.SerialPort;
+//import java.util.Date;
 import jssc.SerialPortException;
+//import jssc.SerialPort;
+//import jssc.SerialPortException;
 
 /**
  *
