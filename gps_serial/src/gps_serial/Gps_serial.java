@@ -34,7 +34,7 @@ public class Gps_serial {
                     String latitud = datos[3];
                     String longitud = datos[5];
                     String altura = datos[8];
-                    System.out.println("Tiempo:\t"+horafecha);
+                    System.out.println("Tiempo:\t\t"+horafecha);
                     System.out.println("Latitud:\t"+latitud);
                     System.out.println("Longitud:\t"+longitud);
                     System.out.println("Altura:\t\t"+altura);
