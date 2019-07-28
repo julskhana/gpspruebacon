@@ -24,19 +24,21 @@ public class Gps_serial {
         Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/readserial.py" });
         p.waitFor();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
-            String line;
-            if ((line = br.readLine()) != null){
-                System.out.println("Valor obtenido: "+line);
-                /*
-                if (line.contains("GPRMC")){
-                    String[] datos = line.split(",");
-                    String hora = datos[1];
-                    String dia = datos[2];
-                    String mes = datos[3];
-                    String anio = datos[4];
-                    System.out.println("tiempo:"+hora);
-                    System.out.println("fecha:"+dia+"/"+mes+"/"+anio);
-                }*/
+            String tramagps;
+            if ((tramagps = br.readLine()) != null){
+                System.out.println("Trama GPS obtenida:"+tramagps);
+                System.out.println("DATOS OBTENIDOS");
+                if (tramagps.contains("GPRMC")){
+                    String[] datos = tramagps.split(",");
+                    String horafecha = generertiempo();
+                    String latitud = datos[3];
+                    String longitud = datos[5];
+                    String altura = datos[8];
+                    System.out.println("Tiempo:\t"+horafecha);
+                    System.out.println("Latitud:\t"+latitud);
+                    System.out.println("Longitud:\t"+longitud);
+                    System.out.println("Altura:'t"+altura);
+                }
             }
         } 
     }
