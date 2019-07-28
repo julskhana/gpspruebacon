@@ -38,6 +38,7 @@ public class Gps_serial {
                     System.out.println("Latitud:\t"+latitud);
                     System.out.println("Longitud:\t"+longitud);
                     System.out.println("Altura:\t\t"+altura+" m");
+                    /*
                     try{
                         ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
                         ConexionBD c = new ConexionBD();
@@ -45,7 +46,7 @@ public class Gps_serial {
                         c.ingresarUbicacion(u);
                     }catch(Exception e){
                         System.out.println("Error: "+e);
-                    }
+                    }*/
                 }else{
                 System.out.println("Error en la trama, no es compatible...");
                 }
