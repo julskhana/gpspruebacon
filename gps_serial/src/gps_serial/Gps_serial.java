@@ -7,6 +7,7 @@ package gps_serial;
 
 import java.io.*;
 import java.sql.Timestamp;
+import java.util.concurrent.TimeUnit;
 //import java.util.*;
 
 public class Gps_serial {
@@ -27,6 +28,7 @@ public class Gps_serial {
             String line;
             if ((line = br.readLine()) != null){
                 System.out.println("Valor obtenido: "+line);
+                TimeUnit.SECONDS.sleep(5);
                 /*
                 if (line.contains("GPRMC")){
                     String[] datos = line.split(",");
