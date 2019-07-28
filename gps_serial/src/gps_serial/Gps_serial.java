@@ -42,12 +42,11 @@ public class Gps_serial {
           while ((line = br.readLine()) != null)  {                                                                               
               System.out.println("Valor obtenido: "+line);                                                                                      
           }
-          String[] datos;
-          datos = line.split(",");
-          String hora = datos[1];
-          String dato2 = datos[2];
+          String[] datos = line.split(",");
+          String hora = datos[0];
+          String dato2 = datos[1];
           System.out.println(hora);
-            System.out.println(dato2);
+          System.out.println(dato2);
       } 
     }
 }
