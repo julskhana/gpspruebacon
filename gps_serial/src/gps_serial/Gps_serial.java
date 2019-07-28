@@ -26,19 +26,24 @@ public class Gps_serial {
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
             String line;
-            if ((line = br.readLine()) != null){
-                System.out.println("Valor obtenido: "+line);
-                TimeUnit.SECONDS.sleep(5);
-                /*
-                if (line.contains("GPRMC")){
-                    String[] datos = line.split(",");
-                    String hora = datos[1];
-                    String dia = datos[2];
-                    String mes = datos[3];
-                    String anio = datos[4];
-                    System.out.println("tiempo:"+hora);
-                    System.out.println("fecha:"+dia+"/"+mes+"/"+anio);
-                }*/
+            int i=0;
+            while (i<9){
+                if ((line = br.readLine()) != null){
+                    System.out.println("Valor obtenido: "+line);
+                    System.out.println("Iteracion: "+i);
+                    i++;
+                    TimeUnit.SECONDS.sleep(5);
+                    /*
+                    if (line.contains("GPRMC")){
+                        String[] datos = line.split(",");
+                        String hora = datos[1];
+                        String dia = datos[2];
+                        String mes = datos[3];
+                        String anio = datos[4];
+                        System.out.println("tiempo:"+hora);
+                        System.out.println("fecha:"+dia+"/"+mes+"/"+anio);
+                    }*/
+                }
             }
         } 
     }
