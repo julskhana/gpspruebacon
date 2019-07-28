@@ -27,9 +27,20 @@ public class Gps_serial {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException, SerialPortException {
+    public static void main(String[] args) throws InterruptedException, SerialPortException, IOException {
         // TODO code application logic here        
         
+         Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpsapp/gpspruebacon/readserial.py" });    
+        p.waitFor();                                                                                                             
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {                                
+          String line;                                                                                                         
+          while ((line = br.readLine()) != null)  {                                                                            
+             System.out.println(line);                                                                                        
+          }                                                                                                                    
+      }   
+        
+        /*
         SerialPort serialPort = new SerialPort("/dev/ttyUSB0");
         serialPort.openPort();//Open serial port
         serialPort.setParams(4800, 8, 1, 0);//Set params.
@@ -38,7 +49,7 @@ public class Gps_serial {
                 if(buffer!=null) {
                 for(byte b:buffer) {
                 System.out.print(b);
-        }
+        }*/
     } 
 }
         
