@@ -39,6 +39,6 @@ public class Gps_serial {
         } catch (Exception ex) {
                 ex.printStackTrace();
         }*/
-        System.out.println("prueba 1");
+        System.out.println("prueba 2 - ejecutable");
     }    
 }
