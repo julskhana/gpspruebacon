@@ -9,7 +9,7 @@ public class ConexionBD {
        //driver netbeans
        private static final String DRIVER = "com.mysql.jdbc.Driver";
        private static final String DBMS = "mysql";
-       private static final String HOST = "192.168.100.177";
+       private static final String HOST = "192.168.100.177"; //direccion ip del servidor de base de datos
        private static final String PORT = "3306";
        //base de datos
        private static final String DATABASE = "base_gps";  //cortejamiento: utf8_spanish_ci
