@@ -5,10 +5,8 @@
  */
 package gps_serial;
 
-import bd.ConexionBD;
 import java.io.*;
 import java.sql.Timestamp;
-import objetos.ubicacion;
 //import java.util.*;
 
 public class Gps_serial {
