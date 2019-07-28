@@ -8,10 +8,6 @@ public class ConexionBD {
        private Connection con;
        //driver netbeans
        private static final String DRIVER = "com.mysql.jdbc.Driver";
-       
-       //driver para javac
-       //private static final String DRIVER = "SQLdriver/mysql-connector-java-5.1.43-bin.jar";
-       
        private static final String DBMS = "mysql";
        private static final String HOST = "192.168.100.177";
        private static final String PORT = "3306";
