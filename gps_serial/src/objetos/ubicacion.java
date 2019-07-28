@@ -5,8 +5,6 @@
  */
 package objetos;
 
-import java.sql.Date;
-
 public class ubicacion {
     
     private int id;

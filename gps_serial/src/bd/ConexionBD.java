@@ -14,7 +14,7 @@ public class ConexionBD {
        //private static final String DRIVER = "SQLdriver/mysql-connector-java-5.1.43-bin.jar";
        
        private static final String DBMS = "mysql";
-       private static final String HOST = "127.0.0.1";
+       private static final String HOST = "192.168.100.177";
        private static final String PORT = "3306";
        //base de datos
        private static final String DATABASE = "base_gps";  //cortejamiento: utf8_spanish_ci

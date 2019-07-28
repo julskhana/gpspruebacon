@@ -9,7 +9,7 @@ import bd.ConexionBD;
 import java.io.*;
 import java.sql.Timestamp;
 import java.util.concurrent.TimeUnit;
-import objetos.ubicacion;
+import objetos.*;
 //import java.util.*;
 
 public class Gps_serial {
