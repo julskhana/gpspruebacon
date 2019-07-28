@@ -7,6 +7,14 @@ package gps_serial;
 
 import java.io.*;
 import java.util.*;
+
+import com.pi4j.io.serial.*;
+import com.pi4j.util.CommandArgumentParser;
+import com.pi4j.util.Console;
+
+import java.io.IOException;
+import java.util.Date;
+
 /**
  *
  * @author Julian
@@ -17,28 +25,81 @@ public class Gps_serial {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws InterruptedException {
+        // TODO code application logic here        
+        System.out.println("Leer desde Serial");
         
-        /*
-         try {
-            CommPortIdentifier portId = CommPortIdentifier.getPortIdentifier("/dev/ttyS80");
-            SerialPort serialPort = (SerialPort) portId.open("GPS application", 5000);
-            // Change baud rate if not 115200
-            serialPort.setSerialPortParams(115200, SerialPort.DATABITS_8, 
-                 SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-            serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
-            inStream = serialPort.getInputStream();
-            String reading ="";
-            while(true) {
-                if(inStream.available() > 0) {
-                    int b = inStream.read();
-                    System.out.print((char)b);
+        final Console console = new Console();
+         console.title("<-- The Pi4J Project -->", "Serial Communication Example");
+         console.promptForExit();
+          final Serial serial = SerialFactory.createInstance();
+
+        serial.addListener(new SerialDataEventListener() {
+            @Override
+            public void dataReceived(SerialDataEvent event) {
+
+                // NOTE! - It is extremely important to read the data received from the
+                // serial port.  If it does not get read from the receive buffer, the
+                // buffer will continue to grow and consume memory.
+
+                // print out the data received to the console
+                try {
+                    console.println("[HEX DATA]   " + event.getHexByteString());
+                    console.println("[ASCII DATA] " + event.getAsciiString());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        } catch (Exception ex) {
-                ex.printStackTrace();
-        }*/
-        System.out.println("prueba 2 - ejecutable");
-    }    
+        });
+        
+        try {
+            SerialConfig config = new SerialConfig();
+            config.device(SerialPort.getDefaultPort())
+                  .baud(Baud._38400)
+                  .dataBits(DataBits._8)
+                  .parity(Parity.NONE)
+                  .stopBits(StopBits._1)
+                  .flowControl(FlowControl.NONE);
+
+            if(args.length > 0){
+                config = CommandArgumentParser.getSerialConfig(config, args);
+            }
+             console.box(" Connecting to: " + config.toString(),
+                    " We are sending ASCII data on the serial port every 1 second.",
+                    " Data received on serial port will be displayed below.");
+
+              serial.open(config);
+
+              while(console.isRunning()) {
+                try {
+                    // write a formatted string to the serial transmit buffer
+                    serial.write("CURRENT TIME: " + new Date().toString());
+
+                    // write a individual bytes to the serial transmit buffer
+                    serial.write((byte) 13);
+                    serial.write((byte) 10);
+
+                    // write a simple string to the serial transmit buffer
+                    serial.write("Second Line");
+
+                    // write a individual characters to the serial transmit buffer
+                    serial.write('\r');
+                    serial.write('\n');
+
+                    // write a string terminating with CR+LF to the serial transmit buffer
+                    serial.writeln("Third Line");
+                }
+                catch(IllegalStateException ex){
+                    ex.printStackTrace();
+                }
+                // wait 1 second before continuing
+                Thread.sleep(1000);
+            }
+
+        }
+        catch(IOException ex) {
+            console.println(" ==>> SERIAL SETUP FAILED : " + ex.getMessage());
+            return;
+        }
+    }
 }
