@@ -7,13 +7,6 @@ package gps_serial;
 
 import java.io.*;
 import java.util.*;
-import gnu.io.*;
-import javax.naming.Context;
-import org.usb4java.Device;
-import org.usb4java.DeviceDescriptor;
-import org.usb4java.DeviceList;
-import org.usb4java.LibUsb;
-import org.usb4java.LibUsbException;
 /**
  *
  * @author Julian
