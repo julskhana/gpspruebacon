@@ -21,13 +21,12 @@ public class Gps_serial {
     public static void main(String[] args) throws InterruptedException, IOException {
         // TODO code application logic here        
         
-        Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/readserial.py" });    
-        p.waitFor();                                                                                                             
-
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
-            String line;
-            int i=0;
-            while (i<9){
+        Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/readserial.py" });
+        p.waitFor();
+        int i=0;
+        while (i<9){
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+                String line;
                 if ((line = br.readLine()) != null){
                     System.out.println("Valor obtenido: "+line);
                     System.out.println("Iteracion: "+i);
