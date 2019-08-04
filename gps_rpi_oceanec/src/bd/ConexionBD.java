@@ -117,41 +117,77 @@ public class ConexionBD {
         return u; 
     }
     
-    public usuario obtenerDatosUsuario(String cuenta){
-        usuario u = new usuario();
+    public dispositivo obtenerDatosDerivador(int dispositivo){
+        dispositivo disp = new dispositivo();
         ResultSet rs = null;                       
         PreparedStatement st = null;
         try{
-            st = con.prepareStatement("SELECT * FROM usuario WHERE cuenta = ?;");            
-            st.setString(1,cuenta);         
+            st = con.prepareStatement("SELECT * FROM dispositivo WHERE id = ?;");            
+            st.setInt(1,dispositivo);         
             rs = st.executeQuery();            
             if(rs.next()){
-                u.setId(rs.getInt("id_usuario"));
-                u.setCuenta(cuenta);
-                u.setNombres(rs.getString("nombres"));
-                u.setApellidos(rs.getString("apellidos"));
-                u.setCedula(rs.getString("cedula"));
-                u.setEdad(rs.getInt("edad"));
-                u.setDireccion(rs.getString("direccion"));
-                u.setTelefono(rs.getString("telefono"));
-                u.setCelular(rs.getString("celular"));
-                u.setCorreo(rs.getString("correo"));
-                u.setSexo(rs.getString("sexo"));
-                u.setTipo(rs.getString("tipo"));
-                u.setCargo(rs.getString("cargo"));
-                u.setEstado(rs.getString("estado"));
-                u.setFecha_inicio(rs.getDate("fecha_inicio"));
-                
-                System.out.println("Datos de usuario obtenidos...");
+                disp.setId(dispositivo);
+                disp.setMac(rs.getString("mac"));
+                disp.setMac(rs.getString("nombre"));
+                disp.setMac(rs.getString("descripcion"));
+                System.out.println("Datos de derivador obtenidos...");
             }
             rs.close();
             st.close();
         }catch(SQLException e){
             System.out.println(e);
         }           
-        return u; 
+        return disp; 
     }
 
+    public ArrayList<dispositivo> consultarDispositivos(String busqueda, String tipo){
+        ArrayList<dispositivo> registro = new ArrayList<dispositivo>();
+        try{
+            Statement st = this.con.createStatement();            
+            ResultSet rs = null;
+            System.out.println(busqueda);
+            System.out.println(tipo);
+            if(tipo.equalsIgnoreCase("dispositivo")){
+                rs = st.executeQuery("SELECT * FROM dispositivo;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM dispositivo WHERE "+tipo+" LIKE '%"+busqueda+"%';");
+            }
+            
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String mac = rs.getString("mac");
+                String nombre = rs.getString("nombre");
+                String descripcion = rs.getString("descripcion");
+                
+                dispositivo deriv = new dispositivo(id, mac, nombre, descripcion);
+                registro.add(deriv);
+            }
+            System.out.println("Dispositivos consultados...");
+        }catch (SQLException e){
+            System.out.println("Error en la consulta de dispositivos"+e);
+        }
+        return registro;
+    } 
+    
+    public boolean ingresaarDerivador(dispositivo de){
+        try{
+            PreparedStatement st=null;
+            st = con.prepareStatement("INSERT INTO dispositivo (mac,nombre,descripcion) VALUES (?,?,?);");
+            st.setString(1,de.getMac());
+            st.setString(2,de.getNombre());
+            st.setString(3,de.getDescripcion());
+            
+            st.executeUpdate();
+            st.close();
+            
+            System.out.println("Se ingreso el dispositivo exitosamente...");
+            return true;
+        }catch (SQLException e){
+            System.out.println("Error al ingresar el dispositivo\n"+e);
+            return false;
+        }
+    }
+    
     
     /*
     public boolean ingresarOperador(dispositivo ubi) {

@@ -5,6 +5,12 @@
  */
 package formularios;
 
+import bd.ConexionBD;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import objetos.dispositivo;
+
 /**
  *
  * @author Julian
@@ -40,9 +46,14 @@ public class frmDerivadores extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento Derivadores");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "MAC", "Nombre" }));
 
         btBuscar.setText("Consultar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Descripcion:");
 
@@ -123,6 +134,69 @@ public class frmDerivadores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        // TODO add your handling code here:
+        
+        String tipo = cbTipo.getSelectedItem().toString();
+        String descripcion = txDescripcion.getText();        
+        //consultar
+        try{
+            //cunsolta a la base
+            try{
+                ConexionBD c = new ConexionBD();
+                c.conectar();
+                ArrayList<dispositivo> reg = c.consultarDispositivos(tipo,"dispositivo");
+                ArrayList<dispositivo> res = new ArrayList<dispositivo>();
+                /*
+                ArrayList<producto> registro = c.consultarProductos("","producto");
+                ArrayList<producto> resultado = new ArrayList<producto>();
+                */
+                //Consultar tipo y descripcion
+                if (tipo.equals("Todos")){
+                        res = reg;
+                }else{
+                    for (dispositivo disp:reg){
+                        if(tipo.equals("ID")&&(descripcion.length()>0)){
+                            if(String.valueOf(disp.getId()).equals(descripcion)){
+                                res.add(disp);
+                            }
+                        }else if(tipo.equals("MAC")){
+                            if(disp.getMac().toUpperCase().contains(descripcion.toUpperCase())){
+                                res.add(disp);
+                            }
+                        }else if(tipo.equals("Nombre")){
+                            if(disp.getNombre().toUpperCase().contains(descripcion.toUpperCase())){
+                                res.add(disp);
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(this,"Descripcion vacia.","Consulta Invalida",JOptionPane.ERROR_MESSAGE);
+                            break;
+                        }
+                    }
+                }
+
+                DefaultTableModel dtm = (DefaultTableModel)tbDerivador.getModel();
+                dtm.setRowCount(0);
+                
+                //recorriendo base de datos
+                for (dispositivo d:res){
+                    Object[] fila = new Object[4];
+                    fila[0] = d.getId();
+                    fila[1] = d.getMac();
+                    fila[2] = d.getNombre();
+                    fila[3] = d.getDescripcion();
+                    dtm.addRow(fila);
+                }
+            c.desconectar();
+            }catch (Exception e){
+                System.out.println("error al consultar derivadores"+e);
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar derivadores","Consulta",JOptionPane.ERROR_MESSAGE);
+            System.out.println("consulta de registros derivadores: "+e);
+        }
+    }//GEN-LAST:event_btBuscarActionPerformed
 
     /**
      * @param args the command line arguments
