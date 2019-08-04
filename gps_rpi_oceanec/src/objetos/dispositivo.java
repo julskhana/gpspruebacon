@@ -8,17 +8,19 @@ package objetos;
 public class dispositivo {
     
     private int id;
+    private String mac;
     private String nombre;
     private String descripcion;
     
 
     //constructor
-    public dispositivo(int id, String nombre, String descripcion) {
+    public dispositivo(int id, String mac, String nombre, String descripcion) {
         this.id = id;
+        this.mac = mac;
         this.nombre = nombre;
-        this.descripcion = descripcion;     
+        this.descripcion = descripcion;
     }
-    
+
     //constructor vacio
     public dispositivo() {
     }
@@ -44,6 +46,10 @@ public class dispositivo {
         this.descripcion = descripcion;
     }
 
+    public void setMac(String mac) {
+        this.mac = mac;
+    }
+    
     //funciones get
 
     public int getId() {
@@ -57,4 +63,9 @@ public class dispositivo {
     public String getDescripcion() {
         return descripcion;
     }
+
+    public String getMac() {
+        return mac;
+    }
+    
 }

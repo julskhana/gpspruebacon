@@ -76,10 +76,14 @@ public class ConexionBD {
             st = con.prepareStatement("SELECT * FROM usuario WHERE cuenta = ? AND clave = md5(?);");
             st.setString(1,u.getCuenta());         
             st.setString(2,u.getClave());
-            st.setString(3,"A");
             rs = st.executeQuery();            
+            if(rs.next()){
+                resultado = true;
+            }else{
+                System.out.println("Usuario no valido - Base de Datos");
+            }
             rs.close();
-            st.close();
+            st.close();            
         }
         catch(SQLException e){
             System.out.println("Error al consultar usuario. "+ e);
@@ -112,6 +116,42 @@ public class ConexionBD {
         }           
         return u; 
     }
+    
+    public usuario obtenerDatosUsuario(String cuenta){
+        usuario u = new usuario();
+        ResultSet rs = null;                       
+        PreparedStatement st = null;
+        try{
+            st = con.prepareStatement("SELECT * FROM usuario WHERE cuenta = ?;");            
+            st.setString(1,cuenta);         
+            rs = st.executeQuery();            
+            if(rs.next()){
+                u.setId(rs.getInt("id_usuario"));
+                u.setCuenta(cuenta);
+                u.setNombres(rs.getString("nombres"));
+                u.setApellidos(rs.getString("apellidos"));
+                u.setCedula(rs.getString("cedula"));
+                u.setEdad(rs.getInt("edad"));
+                u.setDireccion(rs.getString("direccion"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setCelular(rs.getString("celular"));
+                u.setCorreo(rs.getString("correo"));
+                u.setSexo(rs.getString("sexo"));
+                u.setTipo(rs.getString("tipo"));
+                u.setCargo(rs.getString("cargo"));
+                u.setEstado(rs.getString("estado"));
+                u.setFecha_inicio(rs.getDate("fecha_inicio"));
+                
+                System.out.println("Datos de usuario obtenidos...");
+            }
+            rs.close();
+            st.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }           
+        return u; 
+    }
+
     
     /*
     public boolean ingresarOperador(dispositivo ubi) {
@@ -258,41 +298,7 @@ public class ConexionBD {
     
     //consultas
     //funcion para obtener obejtos usuarios desde cuenta
-    public usuario obtenerDatosUsuario(String cuenta){
-        usuario u = new usuario();
-        ResultSet rs = null;                       
-        PreparedStatement st = null;
-        try{
-            st = con.prepareStatement("SELECT * FROM usuario WHERE cuenta = ?;");            
-            st.setString(1,cuenta);         
-            rs = st.executeQuery();            
-            if(rs.next()){
-                u.setId(rs.getInt("id_usuario"));
-                u.setCuenta(cuenta);
-                u.setNombres(rs.getString("nombres"));
-                u.setApellidos(rs.getString("apellidos"));
-                u.setCedula(rs.getString("cedula"));
-                u.setEdad(rs.getInt("edad"));
-                u.setDireccion(rs.getString("direccion"));
-                u.setTelefono(rs.getString("telefono"));
-                u.setCelular(rs.getString("celular"));
-                u.setCorreo(rs.getString("correo"));
-                u.setSexo(rs.getString("sexo"));
-                u.setTipo(rs.getString("tipo"));
-                u.setCargo(rs.getString("cargo"));
-                u.setEstado(rs.getString("estado"));
-                u.setFecha_inicio(rs.getDate("fecha_inicio"));
-                
-                System.out.println("Datos de usuario obtenidos...");
-            }
-            rs.close();
-            st.close();
-        }catch(SQLException e){
-            System.out.println(e);
-        }           
-        return u; 
-    }
-    
+        
     //consulta de seleccion de empresa despues de autenticacion
     public ArrayList<empresa> cargarEmpresas(int id_usuario){        
         ArrayList<empresa> registroE = new ArrayList<empresa>();

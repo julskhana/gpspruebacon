@@ -35,6 +35,12 @@ public class usuario {
         this.rol = rol;
     }
     
+    //consultar
+    public usuario(String cuenta, String clave) {
+        this.cuenta = cuenta;
+        this.clave = clave;
+    }
+    
     //set
 
     public void setId(int id) {

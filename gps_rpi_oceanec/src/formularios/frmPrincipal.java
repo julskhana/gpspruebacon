@@ -5,6 +5,8 @@
  */
 package formularios;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Julian
@@ -27,26 +29,108 @@ public class frmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mArchivo = new javax.swing.JMenu();
+        mnCuenta = new javax.swing.JMenuItem();
+        mnSalir = new javax.swing.JMenuItem();
+        mMantenimiento = new javax.swing.JMenu();
+        mDerivadores = new javax.swing.JMenu();
+        mnVerDerivador = new javax.swing.JMenuItem();
+        mayuda = new javax.swing.JMenu();
+        mnAcerdaDe = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Principal - Derivador GPS");
+
+        mArchivo.setText("Archivo");
+
+        mnCuenta.setText("Cuenta");
+        mArchivo.add(mnCuenta);
+
+        mnSalir.setText("Salir");
+        mnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnSalirActionPerformed(evt);
+            }
+        });
+        mArchivo.add(mnSalir);
+
+        jMenuBar1.add(mArchivo);
+
+        mMantenimiento.setText("Mantenimiento");
+        jMenuBar1.add(mMantenimiento);
+
+        mDerivadores.setText("Derivadores");
+        mDerivadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mDerivadoresActionPerformed(evt);
+            }
+        });
+
+        mnVerDerivador.setText("Ver Derivador");
+        mnVerDerivador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnVerDerivadorActionPerformed(evt);
+            }
+        });
+        mDerivadores.add(mnVerDerivador);
+
+        jMenuBar1.add(mDerivadores);
+
+        mayuda.setText("Ayuda");
+
+        mnAcerdaDe.setText("Acerca De");
+        mayuda.add(mnAcerdaDe);
+
+        jMenuBar1.add(mayuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 273, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSalirActionPerformed
+        // TODO add your handling code here:
+        int opcion = JOptionPane.showConfirmDialog(this,"¿Desea salir?","Atención",JOptionPane.YES_NO_OPTION);
+        if(opcion==0){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_mnSalirActionPerformed
+
+    private void mDerivadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDerivadoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mDerivadoresActionPerformed
+
+    private void mnVerDerivadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVerDerivadorActionPerformed
+        // TODO add your handling code here:
+        frmConsultaDervidador verder = new frmConsultaDervidador();
+        verder.setVisible(true);
+    }//GEN-LAST:event_mnVerDerivadorActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu mArchivo;
+    private javax.swing.JMenu mDerivadores;
+    private javax.swing.JMenu mMantenimiento;
+    private javax.swing.JMenu mayuda;
+    private javax.swing.JMenuItem mnAcerdaDe;
+    private javax.swing.JMenuItem mnCuenta;
+    private javax.swing.JMenuItem mnSalir;
+    private javax.swing.JMenuItem mnVerDerivador;
     // End of variables declaration//GEN-END:variables
 }

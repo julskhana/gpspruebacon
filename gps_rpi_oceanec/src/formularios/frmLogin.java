@@ -5,7 +5,9 @@
  */
 package formularios;
 
+import bd.ConexionBD;
 import javax.swing.JOptionPane;
+import objetos.usuario;
 
 /**
  *
@@ -40,7 +42,7 @@ public class frmLogin extends javax.swing.JFrame {
         pfClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Autenticacion - Tienda Smart");
+        setTitle("Autenticacion");
 
         btIngresar.setText("Ingresar");
         btIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +140,30 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
         // TODO add your handling code here:
+        String cuenta = txUsuario.getText();
+        String clave = String.valueOf(pfClave.getPassword());
+        ConexionBD c = new ConexionBD();
+        try {
+            c.conectar();
+            usuario u = new usuario(cuenta,clave);
+            if(c.esUsuarioValido(u)){
+                //olvidar clave  de usuario activo en sistema
+                u = c.obtenerDatosUsuario(txUsuario.getText());
+                JOptionPane.showMessageDialog(null,"Bienvenido "+u.getNombre(),"Autenticación",JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("Usuario correcto");
+                frmPrincipal pr = new frmPrincipal();
+                this.dispose();
+                pr.setVisible(true);
+                u.setClave(null);
+            }else{
+                JOptionPane.showMessageDialog(null,"Usuario o Clave Incorrectos","Autenticación",JOptionPane.ERROR_MESSAGE);                        
+                System.out.println("Usuario o clave incorrecto");
+                limpiar();
+            }
+            c.desconectar();
+        }catch (Exception e){
+            System.out.println(e);
+        }
         /*
         frmPrincipal pr = new frmPrincipal();
         pr.setVisible(true);
@@ -159,6 +185,10 @@ public class frmLogin extends javax.swing.JFrame {
         pfClave.setText("");
     }//GEN-LAST:event_btlimpiarActionPerformed
 
+    private void limpiar(){
+        txUsuario.setText("");
+        pfClave.setText("");
+    }
     /**
      * @param args the command line arguments
      */
