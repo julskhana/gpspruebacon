@@ -35,6 +35,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mnSalir = new javax.swing.JMenuItem();
         mMantenimiento = new javax.swing.JMenu();
         mnDerivadores = new javax.swing.JMenuItem();
+        mnUsuarios = new javax.swing.JMenuItem();
         mAcciones = new javax.swing.JMenu();
         mnVerDerivador = new javax.swing.JMenuItem();
         mayuda = new javax.swing.JMenu();
@@ -67,6 +68,14 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
         mMantenimiento.add(mnDerivadores);
+
+        mnUsuarios.setText("Usuarios");
+        mnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnUsuariosActionPerformed(evt);
+            }
+        });
+        mMantenimiento.add(mnUsuarios);
 
         jMenuBar1.add(mMantenimiento);
 
@@ -134,6 +143,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         dr.setVisible(true);
     }//GEN-LAST:event_mnDerivadoresActionPerformed
 
+    private void mnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnUsuariosActionPerformed
+        // TODO add your handling code here:
+        frmUsuarios usr = new frmUsuarios();
+        usr.setVisible(true);
+    }//GEN-LAST:event_mnUsuariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -148,6 +163,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnCuenta;
     private javax.swing.JMenuItem mnDerivadores;
     private javax.swing.JMenuItem mnSalir;
+    private javax.swing.JMenuItem mnUsuarios;
     private javax.swing.JMenuItem mnVerDerivador;
     // End of variables declaration//GEN-END:variables
 }
