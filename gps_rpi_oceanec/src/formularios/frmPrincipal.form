@@ -39,17 +39,17 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mDerivadores">
+        <Menu class="javax.swing.JMenu" name="mAcciones">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Derivadores"/>
+            <Property name="text" type="java.lang.String" value="Acciones"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mDerivadoresActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mAccionesActionPerformed"/>
           </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnVerDerivador">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ver Derivador"/>
+                <Property name="text" type="java.lang.String" value="Ver Derivadores"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnVerDerivadorActionPerformed"/>

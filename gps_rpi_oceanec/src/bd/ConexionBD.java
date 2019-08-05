@@ -188,6 +188,23 @@ public class ConexionBD {
         }
     }
     
+    public boolean ingresarDerivador(dispositivo der) {
+        try{
+            PreparedStatement st=null;
+            st = con.prepareStatement("INSERT into dispositivo (mac,nombre,descripcion) VALUES(?,?,?);");
+            st.setString(1,der.getMac());
+            st.setString(2,der.getNombre());
+            st.setString(3,der.getDescripcion());
+            st.executeUpdate();
+            st.close();
+            System.out.println("Se ingreso el dispositivo exitosamente...");
+            return true;
+        }catch (SQLException ee){
+            System.out.println("Error al ingresar el dispositivo\n"+ee);
+            return false;
+        }
+        
+    }
     
     /*
     public boolean ingresarOperador(dispositivo ubi) {

@@ -7,6 +7,7 @@ package formularios;
 
 import bd.ConexionBD;
 import javax.swing.JOptionPane;
+import objetos.dispositivo;
 
 /**
  *
@@ -150,6 +151,21 @@ public class frmIngresarDerivador extends javax.swing.JFrame {
     private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
         // TODO add your handling code here:
         ConexionBD c = new ConexionBD();
+        if(formularioValido()){
+            String mac = txMac.getText();
+            String nombre = txNombre.getText();
+            String descripcion = txDescripcion.getText();           
+            dispositivo d = new dispositivo(mac, nombre, descripcion);
+            try{
+                c.conectar();
+                if(c.ingresaarDerivador(d)){
+                    JOptionPane.showMessageDialog(this,"Ingreso Exitoso a la base de datos","Validación",JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
+            }catch (Exception e){
+                System.out.println("Error al ingresar el derivador..." +e);
+            }
+        }
         /*
         if(formularioValido()){
             String nombre            = tfnombre.getText();
@@ -184,9 +200,8 @@ public class frmIngresarDerivador extends javax.swing.JFrame {
     private boolean formularioValido(){
         if(txMac.getText().equals("") ||
             txNombre.getText().equals("") ||
-            txDescripcion.getText().equals("")){
-            
-           JOptionPane.showMessageDialog(this,"Formulario incompleto","Validación",JOptionPane.ERROR_MESSAGE);
+            txDescripcion.getText().equals("")){    
+                JOptionPane.showMessageDialog(this,"Formulario incompleto","Validación",JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

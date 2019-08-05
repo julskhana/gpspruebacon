@@ -35,7 +35,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mnSalir = new javax.swing.JMenuItem();
         mMantenimiento = new javax.swing.JMenu();
         mnDerivadores = new javax.swing.JMenuItem();
-        mDerivadores = new javax.swing.JMenu();
+        mAcciones = new javax.swing.JMenu();
         mnVerDerivador = new javax.swing.JMenuItem();
         mayuda = new javax.swing.JMenu();
         mnAcerdaDe = new javax.swing.JMenuItem();
@@ -70,22 +70,22 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mMantenimiento);
 
-        mDerivadores.setText("Derivadores");
-        mDerivadores.addActionListener(new java.awt.event.ActionListener() {
+        mAcciones.setText("Acciones");
+        mAcciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDerivadoresActionPerformed(evt);
+                mAccionesActionPerformed(evt);
             }
         });
 
-        mnVerDerivador.setText("Ver Derivador");
+        mnVerDerivador.setText("Ver Derivadores");
         mnVerDerivador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnVerDerivadorActionPerformed(evt);
             }
         });
-        mDerivadores.add(mnVerDerivador);
+        mAcciones.add(mnVerDerivador);
 
-        jMenuBar1.add(mDerivadores);
+        jMenuBar1.add(mAcciones);
 
         mayuda.setText("Ayuda");
 
@@ -118,9 +118,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnSalirActionPerformed
 
-    private void mDerivadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDerivadoresActionPerformed
+    private void mAccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAccionesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mDerivadoresActionPerformed
+    }//GEN-LAST:event_mAccionesActionPerformed
 
     private void mnVerDerivadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVerDerivadorActionPerformed
         // TODO add your handling code here:
@@ -140,8 +140,8 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu mAcciones;
     private javax.swing.JMenu mArchivo;
-    private javax.swing.JMenu mDerivadores;
     private javax.swing.JMenu mMantenimiento;
     private javax.swing.JMenu mayuda;
     private javax.swing.JMenuItem mnAcerdaDe;

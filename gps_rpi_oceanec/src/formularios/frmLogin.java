@@ -42,7 +42,7 @@ public class frmLogin extends javax.swing.JFrame {
         pfClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Autenticacion");
+        setTitle("Autenticacion - Derivador GPS");
 
         btIngresar.setText("Ingresar");
         btIngresar.addActionListener(new java.awt.event.ActionListener() {

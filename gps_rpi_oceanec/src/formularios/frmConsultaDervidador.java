@@ -6,6 +6,7 @@
 package formularios;
 
 import java.util.concurrent.TimeUnit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,7 +46,8 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Visualizador de Derivadores");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Derivador #1", "Derivador #2" }));
 
@@ -85,7 +87,7 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
 
         jLabel6.setText("[m]");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gps1.PNG"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gps2.PNG"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,23 +104,25 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
                         .addComponent(btConsultar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txlatitud)
                                     .addComponent(txlongitud)
                                     .addComponent(txaltitud)
                                     .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel7)))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,9 +149,9 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -159,6 +163,11 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
         txlongitud.setText(String.valueOf(funciones.gps.generarlongitud()));
         txaltitud.setText(String.valueOf(funciones.gps.generarlatitud()));
         txtiempo.setText(String.valueOf(funciones.gps.generertiempo()));
+        
+        if (Float.valueOf(txlatitud.getText()) < -0.93f){
+            System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
+            JOptionPane.showMessageDialog(this,"El dispositivo esta fuera de la zona permitida.","Alerta GPS",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btConsultarActionPerformed
 
     private void txlatitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txlatitudActionPerformed

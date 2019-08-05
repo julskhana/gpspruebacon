@@ -26,8 +26,15 @@ public class dispositivo {
     }
     
     //constructor para generar datos GPS
-
     public dispositivo(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+    
+    //ingresar dispositivo
+
+    public dispositivo(String mac, String nombre, String descripcion) {
+        this.mac = mac;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
