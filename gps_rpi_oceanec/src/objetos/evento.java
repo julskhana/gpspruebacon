@@ -16,13 +16,19 @@ public class evento {
     private String descripcion;
     private String tiempo;
     private int id_derivador;
+    private float latitud;
+    private float longitud;
+    private float elevacion;
 
-    public evento(int id, String tipo, String descripcion, String tiempo, int id_derivador) {
+    public evento(int id, String tipo, String descripcion, String tiempo, int id_derivador, float latitud, float longitud, float elevacion) {
         this.id = id;
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.tiempo = tiempo;
         this.id_derivador = id_derivador;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.elevacion = elevacion;
     }
 
     public evento() {
@@ -57,6 +63,19 @@ public class evento {
         this.id_derivador = id_derivador;
     }
 
+    public void setLatitud(float latitud) {
+        this.latitud = latitud;
+    }
+
+    public void setLongitud(float longitud) {
+        this.longitud = longitud;
+    }
+
+    public void setElevacion(float elevacion) {
+        this.elevacion = elevacion;
+    }
+    
+
     //get
     
     public int getId() {
@@ -77,6 +96,18 @@ public class evento {
 
     public int getId_derivador() {
         return id_derivador;
+    }
+
+    public float getLatitud() {
+        return latitud;
+    }
+
+    public float getLongitud() {
+        return longitud;
+    }
+
+    public float getElevacion() {
+        return elevacion;
     }
     
     
