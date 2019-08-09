@@ -52,12 +52,11 @@ public class ConexionBD {
     public boolean ingresarUbicacion(ubicacion ubi){
         try{
             PreparedStatement st = null;
-            st = con.prepareStatement("INSERT INTO ubicacion (latitud,longitud,elevacion,tiempo,id_dispositivo) VALUES (?,?,?,?,1);");
+            st = con.prepareStatement("INSERT INTO ubicacion (latitud,longitud,elevacion,id_dispositivo) VALUES (?,?,?,1);");
             st.setFloat(1,ubi.getLatitud());
             st.setFloat(2,ubi.getLongitud());
             st.setFloat(3,ubi.getElevacion());
-            st.setString(4,ubi.getTiempo());
-            
+            //st.setString(4,ubi.getTiempo());
             st.executeUpdate();
             st.close();
             System.out.println("Se ingreso la ubicacion a la base de datos...");
@@ -169,25 +168,6 @@ public class ConexionBD {
         return registro;
     } 
     
-    public boolean ingresaarDerivador(dispositivo de){
-        try{
-            PreparedStatement st=null;
-            st = con.prepareStatement("INSERT INTO dispositivo (mac,nombre,descripcion) VALUES (?,?,?);");
-            st.setString(1,de.getMac());
-            st.setString(2,de.getNombre());
-            st.setString(3,de.getDescripcion());
-            
-            st.executeUpdate();
-            st.close();
-            
-            System.out.println("Se ingreso el dispositivo exitosamente...");
-            return true;
-        }catch (SQLException e){
-            System.out.println("Error al ingresar el dispositivo\n"+e);
-            return false;
-        }
-    }
-    
     public boolean ingresarDerivador(dispositivo der) {
         try{
             PreparedStatement st=null;
@@ -203,9 +183,27 @@ public class ConexionBD {
             System.out.println("Error al ingresar el dispositivo\n"+ee);
             return false;
         }
-        
     }
     
+    //INSERT INTO evento (tipo,descripcion,tiempo,id_derivador) VALUES();
+    
+    public boolean ingresarEvento(evento ev) {
+        try{
+            PreparedStatement st=null;
+            st = con.prepareStatement("INSERT INTO evento (tipo,descripcion,tiempo,id_derivador) VALUES(?,?,?,?);");
+            st.setString(1,ev.getTipo());
+            st.setString(2,ev.getDescripcion());
+            st.setString(3,ev.getTiempo());
+            st.setInt(4,ev.getId_derivador());
+            st.executeUpdate();
+            st.close();
+            System.out.println("Se ingreso el eveto exitosamente...");
+            return true;
+        }catch (SQLException ee){
+            System.out.println("Error al ingresar el evento\n"+ee);
+            return false;
+        }
+    }
     /*
     public boolean ingresarOperador(dispositivo ubi) {
         try{

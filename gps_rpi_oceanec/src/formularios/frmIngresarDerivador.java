@@ -158,7 +158,7 @@ public class frmIngresarDerivador extends javax.swing.JFrame {
             dispositivo d = new dispositivo(mac, nombre, descripcion);
             try{
                 c.conectar();
-                if(c.ingresaarDerivador(d)){
+                if(c.ingresarDerivador(d)){
                     JOptionPane.showMessageDialog(this,"Ingreso Exitoso a la base de datos","Validación",JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                 }

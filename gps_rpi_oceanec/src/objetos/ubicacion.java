@@ -39,8 +39,16 @@ public class ubicacion {
         this.id_dispositivo = id_dispositivo;
     }
     
-    //set
+    //ingreso con tiempo en base
 
+    public ubicacion(float latitud, float longitud, float elevacion, int id_dispositivo) {
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.elevacion = elevacion;
+        this.id_dispositivo = id_dispositivo;
+    }
+
+    //set
     public void setId(int id) {
         this.id = id;
     }

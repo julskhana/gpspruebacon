@@ -5,8 +5,11 @@
  */
 package formularios;
 
+import bd.ConexionBD;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
+import objetos.evento;
+import objetos.ubicacion;
 
 /**
  *
@@ -159,15 +162,30 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
 
     private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
         // TODO add your handling code here:
-        txlatitud.setText(String.valueOf(funciones.gps.generarlatitud()));
-        txlongitud.setText(String.valueOf(funciones.gps.generarlongitud()));
-        txaltitud.setText(String.valueOf(funciones.gps.generarlatitud()));
-        txtiempo.setText(String.valueOf(funciones.gps.generertiempo()));
+        float latitud = funciones.gps.generarlatitud();
+        float longitud = funciones.gps.generarlongitud();
+        float elevacion = funciones.gps.generarelevacion();
         
-        if (Float.valueOf(txlatitud.getText()) < -0.93f){
-            System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
-            JOptionPane.showMessageDialog(this,"El dispositivo esta fuera de la zona permitida.","Alerta GPS",JOptionPane.ERROR_MESSAGE);
+        txlatitud.setText(String.valueOf(latitud));
+        txlongitud.setText(String.valueOf(longitud));
+        txaltitud.setText(String.valueOf(elevacion));
+        txtiempo.setText(String.valueOf(funciones.gps.generertiempo()));
+        try {
+            ConexionBD c = new ConexionBD();
+            c.conectar();
+            ubicacion u = new ubicacion(latitud, longitud, elevacion,1);
+            c.ingresarUbicacion(u);
+            if (Float.valueOf(txlatitud.getText()) < -0.93f){
+                System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
+                evento ev = new evento("rango","El derivador esta fuera de rango",txtiempo.getText(),1);
+                c.ingresarEvento(ev);
+                JOptionPane.showMessageDialog(this,"El dispositivo esta fuera de la zona permitida.","Alerta GPS",JOptionPane.ERROR_MESSAGE);
+            }
+            c.desconectar();
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
         }
+        
     }//GEN-LAST:event_btConsultarActionPerformed
 
     private void txlatitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txlatitudActionPerformed
