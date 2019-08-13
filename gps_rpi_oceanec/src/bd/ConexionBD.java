@@ -197,13 +197,34 @@ public class ConexionBD {
             st.setInt(4,ev.getId_derivador());
             st.executeUpdate();
             st.close();
-            System.out.println("Se ingreso el eveto exitosamente...");
+            System.out.println("Se ingreso el evento exitosamente...");
             return true;
         }catch (SQLException ee){
             System.out.println("Error al ingresar el evento\n"+ee);
             return false;
         }
     }
+    
+    public boolean ingresarUsuario(usuario u) {
+        try{
+            PreparedStatement st=null;
+            st = con.prepareStatement("INSERT INTO usuario (cuenta,clave,nombre,cedula,telefono,rol) VALUES(?,md5(?),?,?,?,?)");
+            st.setString(1,u.getCuenta());
+            st.setString(2,u.getClave());
+            st.setString(3,u.getNombre());
+            st.setString(4,u.getCedula());
+            st.setString(5,u.getTelefono());
+            st.setString(6,u.getRol());
+            st.executeUpdate();
+            st.close();
+            System.out.println("Se ingreso el usuario exitosamente...");
+            return true;
+        }catch (SQLException e){
+            System.out.println("Error al ingresar el usuario:"+e);
+            return false;
+        }
+    }
+    
     /*
     public boolean ingresarOperador(dispositivo ubi) {
         try{

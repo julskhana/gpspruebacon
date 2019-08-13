@@ -28,10 +28,13 @@ public class usuario {
     public usuario() {
     }
 
-    public usuario(String cuenta, String clave, String nombre, String rol) {
+    //ingreso
+    public usuario(String cuenta, String clave, String nombre, String cedula, String telefono, String rol) {
         this.cuenta = cuenta;
         this.clave = clave;
         this.nombre = nombre;
+        this.cedula = cedula;
+        this.telefono = telefono;
         this.rol = rol;
     }
     

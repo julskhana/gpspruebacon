@@ -5,6 +5,10 @@
  */
 package formularios;
 
+import bd.ConexionBD;
+import javax.swing.JOptionPane;
+import objetos.usuario;
+
 /**
  *
  * @author Julian
@@ -34,7 +38,7 @@ public class frmIngresarUsuarios extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbRol = new javax.swing.JComboBox<>();
         txCuenta = new javax.swing.JTextField();
         pfClave = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
@@ -65,7 +69,7 @@ public class frmIngresarUsuarios extends javax.swing.JFrame {
 
         jLabel6.setText("Rol:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Usuario" }));
+        cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Usuario" }));
 
         txCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +101,11 @@ public class frmIngresarUsuarios extends javax.swing.JFrame {
         });
 
         btIngresar.setText("Ingresar");
+        btIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIngresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,20 +127,15 @@ public class frmIngresarUsuarios extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                        .addComponent(txNombre)
-                                        .addComponent(txCuenta)
-                                        .addComponent(pfClave)
-                                        .addComponent(pfClaveConfirmada))
-                                    .addComponent(txTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(txNombre)
+                            .addComponent(txCuenta)
+                            .addComponent(pfClave)
+                            .addComponent(pfClaveConfirmada)
+                            .addComponent(txTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(cbRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(btLimpiar)))
@@ -176,9 +180,9 @@ public class frmIngresarUsuarios extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addGap(17, 46, Short.MAX_VALUE))
+                        .addGap(17, 66, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -213,6 +217,28 @@ public class frmIngresarUsuarios extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_btLimpiarActionPerformed
 
+    private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
+        // TODO add your handling code here:
+        String cuenta = txCuenta.getText();
+        String clave = pfClave.getText();
+        String nombre = txNombre.getText();
+        String cedula = txCedula.getText();
+        String telefono = txTelefono.getText();
+        String rol = cbRol.getSelectedItem().toString();
+        usuario u = new usuario(cuenta, clave, nombre, cedula, telefono, rol);
+        ConexionBD c = new ConexionBD();
+        try {
+            c.conectar();
+            c.ingresarUsuario(u);
+            c.desconectar();
+            JOptionPane.showMessageDialog(this,"Ingreso exitoso de datos.","Usuarios",JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } catch (Exception e) {
+            System.out.println("Error al ingresar usuario: "+e);
+            JOptionPane.showMessageDialog(this,"No se pudo ingresar el nuevo usuario.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btIngresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -230,8 +256,8 @@ public class frmIngresarUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel VerificacionClave;
     private javax.swing.JButton btIngresar;
     private javax.swing.JButton btLimpiar;
+    private javax.swing.JComboBox<String> cbRol;
     private javax.swing.JLabel icono;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
