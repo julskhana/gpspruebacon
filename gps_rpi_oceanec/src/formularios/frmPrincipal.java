@@ -38,6 +38,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mnUsuarios = new javax.swing.JMenuItem();
         mAcciones = new javax.swing.JMenu();
         mnVerDerivador = new javax.swing.JMenuItem();
+        mnVerUbicaciones = new javax.swing.JMenuItem();
         mayuda = new javax.swing.JMenu();
         mnAcerdaDe = new javax.swing.JMenuItem();
 
@@ -94,6 +95,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         mAcciones.add(mnVerDerivador);
 
+        mnVerUbicaciones.setText("Ver Ubicaciones");
+        mnVerUbicaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnVerUbicacionesActionPerformed(evt);
+            }
+        });
+        mAcciones.add(mnVerUbicaciones);
+
         jMenuBar1.add(mAcciones);
 
         mayuda.setText("Ayuda");
@@ -109,11 +118,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 695, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 273, Short.MAX_VALUE)
+            .addGap(0, 377, Short.MAX_VALUE)
         );
 
         pack();
@@ -149,6 +158,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         usr.setVisible(true);
     }//GEN-LAST:event_mnUsuariosActionPerformed
 
+    private void mnVerUbicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVerUbicacionesActionPerformed
+        // TODO add your handling code here:
+        frmUbicaciones ubis = new frmUbicaciones();
+        ubis.setVisible(true);
+    }//GEN-LAST:event_mnVerUbicacionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -165,5 +180,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnSalir;
     private javax.swing.JMenuItem mnUsuarios;
     private javax.swing.JMenuItem mnVerDerivador;
+    private javax.swing.JMenuItem mnVerUbicaciones;
     // End of variables declaration//GEN-END:variables
 }

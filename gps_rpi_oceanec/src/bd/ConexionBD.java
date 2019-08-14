@@ -168,6 +168,70 @@ public class ConexionBD {
         return registro;
     } 
     
+    public ArrayList<ubicacion> consultarUbicacion(String busqueda, String tipo){
+        ArrayList<ubicacion> registro = new ArrayList<ubicacion>();
+        try{
+            Statement st = this.con.createStatement();            
+            ResultSet rs = null;
+            System.out.println(busqueda);
+            System.out.println(tipo);
+            if(tipo.equalsIgnoreCase("ubicacion")){
+                rs = st.executeQuery("SELECT * FROM ubicacion;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM ubicacion WHERE "+tipo+" LIKE '%"+busqueda+"%';");
+            }
+            
+            while (rs.next()){
+                int id = rs.getInt("id");
+                float latitud = rs.getFloat("latitud");
+                float longitud = rs.getFloat("longitud");
+                float elevacion = rs.getFloat("elevacion");
+                Timestamp tiempo = rs.getTimestamp("tiempo");
+                int id_derivador = rs.getInt("id_dispositivo");
+                
+                ubicacion ubi = new ubicacion(id, latitud, longitud, elevacion, tiempo, id_derivador);
+                
+                registro.add(ubi);
+            }
+            System.out.println("Ubicaciones consultados...");
+        }catch (SQLException e){
+            System.out.println("Error en la consulta de ubicaciones - sql : "+e);
+        }
+        return registro;
+    }
+    
+    public ArrayList<evento> consultarEventos(String busqueda, String tipo){
+        ArrayList<evento> registro = new ArrayList<evento>();
+        try{
+            Statement st = this.con.createStatement();            
+            ResultSet rs = null;
+            System.out.println(busqueda);
+            System.out.println(tipo);
+            if(tipo.equalsIgnoreCase("evento")){
+                rs = st.executeQuery("SELECT * FROM evento;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM evento WHERE "+tipo+" LIKE '%"+busqueda+"%';");
+            }
+            
+            while (rs.next()){
+                int id = rs.getInt("id");
+                float latitud = rs.getFloat("latitud");
+                float longitud = rs.getFloat("longitud");
+                float elevacion = rs.getFloat("elevacion");
+                Timestamp tiempo = rs.getTimestamp("tiempo");
+                int id_derivador = rs.getInt("id_dispositivo");
+                
+                //ubicacion ubi = new ubicacion(id, latitud, longitud, elevacion, tiempo, id_derivador);
+                
+                //registro.add(ubi);
+            }
+            System.out.println("Eventos consultados...");
+        }catch (SQLException e){
+            System.out.println("Error en la consulta de evenntos - sql : "+e);
+        }
+        return registro;
+    }
+    
     public boolean ingresarDerivador(dispositivo der) {
         try{
             PreparedStatement st=null;

@@ -5,7 +5,9 @@
  */
 package objetos;
 
-public class dispositivo {
+import java.io.Serializable;
+
+public class dispositivo implements Serializable{
     
     private int id;
     private String mac;

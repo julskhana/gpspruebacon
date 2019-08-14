@@ -5,7 +5,9 @@
  */
 package objetos;
 
-public class usuario {
+import java.io.Serializable;
+
+public class usuario implements Serializable{
     
     private int id;
     private String cuenta;  //dmerino

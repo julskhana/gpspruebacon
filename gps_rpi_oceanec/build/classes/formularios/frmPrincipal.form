@@ -63,6 +63,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnVerDerivadorActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnVerUbicaciones">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ver Ubicaciones"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnVerUbicacionesActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mayuda">
@@ -104,12 +112,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="580" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="695" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="273" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="377" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>

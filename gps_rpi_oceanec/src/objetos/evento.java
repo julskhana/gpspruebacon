@@ -5,11 +5,13 @@
  */
 package objetos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Julian
  */
-public class evento {
+public class evento implements Serializable{
     
     private int id;
     private String tipo;

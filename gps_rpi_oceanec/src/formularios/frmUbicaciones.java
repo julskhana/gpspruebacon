@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import objetos.dispositivo;
+import objetos.ubicacion;
 
 /**
  *
@@ -43,7 +44,7 @@ public class frmUbicaciones extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizar Ubicaciones GPS");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "MAC", "Nombre" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "Latitud", "Longitud", "Fecha", "Derivador" }));
 
         btBuscar.setText("Consultar");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -82,16 +83,15 @@ public class frmUbicaciones extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(txDescripcion)
+                        .addGap(18, 18, 18)
+                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -104,8 +104,8 @@ public class frmUbicaciones extends javax.swing.JFrame {
                     .addComponent(btBuscar)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,24 +122,32 @@ public class frmUbicaciones extends javax.swing.JFrame {
             try{
                 ConexionBD c = new ConexionBD();
                 c.conectar();
-                ArrayList<dispositivo> reg = c.consultarDispositivos(tipo,"dispositivo");
-                ArrayList<dispositivo> res = new ArrayList<dispositivo>();
+                ArrayList<ubicacion> reg = c.consultarUbicacion(tipo,"ubicacion");
+                ArrayList<ubicacion> res = new ArrayList<ubicacion>();
                 //Consultar tipo y descripcion
                 if (tipo.equals("Todos")){
                         res = reg;
                 }else{
-                    for (dispositivo disp:reg){
+                    for (ubicacion ubi:reg){
                         if(tipo.equals("ID")&&(descripcion.length()>0)){
-                            if(String.valueOf(disp.getId()).equals(descripcion)){
-                                res.add(disp);
+                            if(String.valueOf(ubi.getId()).equals(descripcion)){
+                                res.add(ubi);
                             }
-                        }else if(tipo.equals("MAC")){
-                            if(disp.getMac().toUpperCase().contains(descripcion.toUpperCase())){
-                                res.add(disp);
+                        }else if(tipo.equals("Latitud")){
+                            if(String.valueOf(ubi.getLatitud()).equals(descripcion)){
+                                res.add(ubi);
                             }
-                        }else if(tipo.equals("Nombre")){
-                            if(disp.getNombre().toUpperCase().contains(descripcion.toUpperCase())){
-                                res.add(disp);
+                        }else if(tipo.equals("Longitud")){
+                            if(String.valueOf(ubi.getLongitud()).equals(descripcion)){
+                                res.add(ubi);
+                            }
+                        }else if(tipo.equals("Elevacion")){
+                            if(String.valueOf(ubi.getElevacion()).equals(descripcion)){
+                                res.add(ubi);
+                            }
+                        }else if(tipo.equals("Tiempo")){
+                            if(String.valueOf(ubi.getTiempo()).contains(descripcion)){
+                                res.add(ubi);
                             }
                         }else{
                             JOptionPane.showMessageDialog(this,"Descripcion vacia.","Consulta Invalida",JOptionPane.ERROR_MESSAGE);
@@ -152,21 +160,23 @@ public class frmUbicaciones extends javax.swing.JFrame {
                 dtm.setRowCount(0);
                 
                 //recorriendo base de datos
-                for (dispositivo d:res){
-                    Object[] fila = new Object[4];
-                    fila[0] = d.getId();
-                    fila[1] = d.getMac();
-                    fila[2] = d.getNombre();
-                    fila[3] = d.getDescripcion();
+                for (ubicacion u:res){
+                    Object[] fila = new Object[6];
+                    fila[0] = u.getId();
+                    fila[1] = u.getLatitud();
+                    fila[2] = u.getLongitud();
+                    fila[3] = u.getElevacion();
+                    fila[4] = u.getTiempo();
+                    fila[5] = u.getId_dispositivo();
                     dtm.addRow(fila);
                 }
             c.desconectar();
             }catch (Exception e){
-                System.out.println("error al consultar derivadores"+e);
+                System.out.println("error al consultar ubicaciones"+e);
             }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar derivadores","Consulta",JOptionPane.ERROR_MESSAGE);
-            System.out.println("consulta de registros derivadores: "+e);
+            JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar ubicaciones","Consulta",JOptionPane.ERROR_MESSAGE);
+            System.out.println("consulta de registros ubicaciones: "+e);
         }
     }//GEN-LAST:event_btBuscarActionPerformed
 
