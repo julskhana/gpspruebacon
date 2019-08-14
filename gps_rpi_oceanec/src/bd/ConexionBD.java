@@ -190,11 +190,13 @@ public class ConexionBD {
     public boolean ingresarEvento(evento ev) {
         try{
             PreparedStatement st=null;
-            st = con.prepareStatement("INSERT INTO evento (tipo,descripcion,tiempo,id_derivador) VALUES(?,?,?,?);");
+            st = con.prepareStatement("INSERT INTO evento (tipo,descripcion,latitud,longitud,elevacion,id_derivador) VALUES(?,?,?,?,?,?);");
             st.setString(1,ev.getTipo());
             st.setString(2,ev.getDescripcion());
-            st.setString(3,ev.getTiempo());
-            st.setInt(4,ev.getId_derivador());
+            st.setFloat(3,ev.getLatitud());
+            st.setFloat(4,ev.getLongitud());
+            st.setFloat(5,ev.getElevacion());
+            st.setInt(6,ev.getId_derivador());
             st.executeUpdate();
             st.close();
             System.out.println("Se ingreso el evento exitosamente...");

@@ -177,7 +177,7 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
             c.ingresarUbicacion(u);
             if (Float.valueOf(txlatitud.getText()) < -0.93f){
                 System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
-                evento ev = new evento("rango","El derivador esta fuera de rango",txtiempo.getText(),1);
+                evento ev = new evento("Rango","El dispisitivo esta fuera de rango.", latitud, longitud, elevacion, repetidor);
                 c.ingresarEvento(ev);
                 JOptionPane.showMessageDialog(this,"El dispositivo esta fuera de la zona permitida.","Alerta GPS",JOptionPane.ERROR_MESSAGE);
             }

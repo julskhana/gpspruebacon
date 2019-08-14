@@ -34,12 +34,17 @@ public class evento {
     public evento() {
     }
 
-    public evento(String tipo, String descripcion, String tiempo, int id_derivador) {
+    //ingresar
+
+    public evento(String tipo, String descripcion,float latitud, float longitud, float elevacion, int id_derivador) {
         this.tipo = tipo;
         this.descripcion = descripcion;
-        this.tiempo = tiempo;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.elevacion = elevacion;
         this.id_derivador = id_derivador;
     }
+    
     
     //set
 
