@@ -6,7 +6,14 @@
 package formularios;
 
 import bd.ConexionBD;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
+import static javafx.scene.input.DataFormat.URL;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import objetos.evento;
 import objetos.ubicacion;
@@ -117,7 +124,7 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
                             .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +151,7 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,6 +159,7 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
 
     private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
         // TODO add your handling code here:
+        
         float latitud = funciones.gps.generarlatitud();
         float longitud = funciones.gps.generarlongitud();
         float elevacion = funciones.gps.generarelevacion();
@@ -172,10 +180,15 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"El dispositivo esta fuera de la zona permitida.","Alerta GPS",JOptionPane.ERROR_MESSAGE);
             }
             c.desconectar();
+            frmGPS gps = new frmGPS(String.valueOf(latitud),String.valueOf(longitud));
+            gps.setVisible(true);
         } catch (Exception e) {
             System.out.println("Error: "+e);
         }
         
+        //desplegar gps
+        JFrame test = new JFrame("Google Maps");
+ 
     }//GEN-LAST:event_btConsultarActionPerformed
 
     private void txlatitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txlatitudActionPerformed

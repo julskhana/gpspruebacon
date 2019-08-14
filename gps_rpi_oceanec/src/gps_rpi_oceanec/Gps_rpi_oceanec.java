@@ -31,12 +31,12 @@ public class Gps_rpi_oceanec {
         System.out.println("\nIniciando programa...");
         
         
-        frmLogin aut = new frmLogin();
-        aut.setVisible(true);
-        /*
+        //frmLogin aut = new frmLogin();
+        //aut.setVisible(true);
+        
         frmPrincipal pr = new frmPrincipal();
         pr.setVisible(true);
-        */
+        
         /*
         float latitud = funciones.gps.generarlatitud();
         float longitud = funciones.gps.generarlongitud();
