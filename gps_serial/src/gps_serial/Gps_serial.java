@@ -24,7 +24,7 @@ public class Gps_serial {
         Pruebas1 ip: 192.168.100.187
         */
         
-        Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readGps.py" });
+        Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
         p.waitFor();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
             String tramagps;
