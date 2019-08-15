@@ -26,7 +26,8 @@ public class Gps_serial {
         System.out.println("Programa GPS - Lector de trama GPRMC");
         System.out.println("Ejecutando Script en python...");
         Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
-        p.waitFor();
+        //p.waitFor();
+        p.getInputStream();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
             String tramagps;
             System.out.println("Obeteniendo datos...");
