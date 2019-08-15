@@ -19,7 +19,12 @@ public class Gps_serial {
      */
     public static void main(String[] args) throws InterruptedException, IOException {
         // TODO code application logic here        
-        Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/readserial.py" });
+        
+        /*
+        Pruebas1 ip: 192.168.100.187
+        */
+        
+        Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readGps.py" });
         p.waitFor();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
             String tramagps;
