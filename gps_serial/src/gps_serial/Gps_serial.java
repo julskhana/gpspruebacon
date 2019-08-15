@@ -23,7 +23,8 @@ public class Gps_serial {
         /*
         Pruebas1 ip: 192.168.100.187
         */
-        
+        System.out.println("Programa GPS - Lector de trama GPRMC");
+        System.out.println("Ejecutando Script en python...");
         Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
         p.waitFor();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
@@ -31,28 +32,24 @@ public class Gps_serial {
             if ((tramagps = br.readLine()) != null){
                 System.out.println("Trama GPS obtenida:"+tramagps);
                 System.out.println("DATOS OBTENIDOS");
-                if (tramagps.contains("GPRMC")){
-                    String[] datos = tramagps.split(",");
-                    String horafecha = generertiempo();
-                    String latitud = datos[3];
-                    String longitud = datos[5];
-                    String altura = datos[8];
-                    System.out.println("Tiempo:\t\t"+horafecha);
-                    System.out.println("Latitud:\t"+latitud);
-                    System.out.println("Longitud:\t"+longitud);
-                    System.out.println("Altura:\t\t"+altura+" m");
-                    /*
-                    try{
-                        ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
-                        ConexionBD c = new ConexionBD();
-                        c.conectar();
-                        c.ingresarUbicacion(u);
-                    }catch(Exception e){
-                        System.out.println("Error: "+e);
-                    }*/
-                }else{
-                System.out.println("Error en la trama, no es compatible...");
-                }
+                String[] datos = tramagps.split(",");
+                String horafecha = generertiempo();
+                String latitud = datos[3];
+                String longitud = datos[5];
+                String altura = datos[8];
+                System.out.println("Tiempo:\t\t"+horafecha);
+                System.out.println("Latitud:\t"+latitud);
+                System.out.println("Longitud:\t"+longitud);
+                System.out.println("Altura:\t\t"+altura+" m");
+                /*
+                try{
+                    ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
+                    ConexionBD c = new ConexionBD();
+                    c.conectar();
+                    c.ingresarUbicacion(u);
+                }catch(Exception e){
+                    System.out.println("Error: "+e);
+                }*/
             }
         } 
     }
@@ -60,6 +57,7 @@ public class Gps_serial {
     //funciones
     //datos para recoger desde modulo gps: latitud, longitud, altitud
     //METODO PARA GENERAR TIEMPO DE EJECUCION
+
     static String generertiempo(){
         Timestamp tiempo = new Timestamp(System.currentTimeMillis());
         return tiempo.toString();
