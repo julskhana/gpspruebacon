@@ -19,6 +19,8 @@ try:
             print  getattr(report,'ept','nan'),",",
             print  getattr(report,'speed','nan'),",",
             print  getattr(report,'climb','nan'),","
+
+            break
  
         time.sleep(1) 
  
