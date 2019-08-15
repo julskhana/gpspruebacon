@@ -5,17 +5,19 @@
  */
 package objetos;
 
+import java.sql.Timestamp;
+
 public class ubicacion {
     
     private int id;
     private float latitud;
     private float longitud;
     private float elevacion;
-    private String tiempo;
+    private Timestamp tiempo;
     private int id_dispositivo;
 
     //normal
-    public ubicacion(int id, float latitud, float longitud, float elevacion, String tiempo, int id_dispositivo) {
+    public ubicacion(int id, float latitud, float longitud, float elevacion, Timestamp tiempo, int id_dispositivo) {
         this.id = id;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -29,7 +31,7 @@ public class ubicacion {
     }
     
     //ingreso
-    public ubicacion(float latitud, float longitud, float elevacion, String tiempo, int id_dispositivo) {
+    public ubicacion(float latitud, float longitud, float elevacion, Timestamp tiempo, int id_dispositivo) {
         this.latitud = latitud;
         this.longitud = longitud;
         this.elevacion = elevacion;
@@ -55,7 +57,7 @@ public class ubicacion {
         this.elevacion = elevacion;
     }
 
-    public void setTiempo(String tiempo) {
+    public void setTiempo(Timestamp tiempo) {
         this.tiempo = tiempo;
     }
 
@@ -81,7 +83,7 @@ public class ubicacion {
         return elevacion;
     }
 
-    public String getTiempo() {
+    public Timestamp getTiempo() {
         return tiempo;
     }
 

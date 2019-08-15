@@ -51,7 +51,7 @@ public class ConexionBD {
             st.setFloat(1,ubi.getLatitud());
             st.setFloat(2,ubi.getLongitud());
             st.setFloat(3,ubi.getElevacion());
-            st.setString(4,ubi.getTiempo());
+            st.setTimestamp(4,ubi.getTiempo());
             
             st.executeUpdate();
             st.close();

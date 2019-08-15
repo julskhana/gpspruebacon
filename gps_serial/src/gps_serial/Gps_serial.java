@@ -5,8 +5,10 @@
  */
 package gps_serial;
 
+import bd.ConexionBD;
 import java.io.*;
 import java.sql.Timestamp;
+import objetos.ubicacion;
 //import java.util.*;
 
 public class Gps_serial {
@@ -26,6 +28,7 @@ public class Gps_serial {
         System.out.println("Programa GPS - Lector de trama GPRMC");
         System.out.println("Ejecutando Script en python...");
         int i;
+        ConexionBD c = new ConexionBD();
         for(i=0;i<10;i++){
             Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
             p.waitFor();
@@ -46,17 +49,23 @@ public class Gps_serial {
                     System.out.println("Longitud:\t"+longitud);
                     System.out.println("Tiempo:\t\t"+tiempo);
                     System.out.println("Altura:\t\t"+altura+" m");
-                    /*
+                    //conversion de datos
+                    float latitudf = Float.valueOf(latitud);
+                    float longitudf = Float.valueOf(longitud);
+                    float alturaf = Float.valueOf(altura);
+                    Timestamp tiempof = Timestamp.valueOf(tiempo);
+                    
                     try{
-                        ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
-                        ConexionBD c = new ConexionBD();
+                        ubicacion u = new ubicacion(latitudf, longitudf, alturaf, tiempof,1);
+                        
                         c.conectar();
                         c.ingresarUbicacion(u);
                     }catch(Exception e){
                         System.out.println("Error: "+e);
-                    }*/
+                    }
                 }
-            }    
+            }
+            System.out.println("Fin de transmision GPS...");
         }
          
     }
@@ -69,4 +78,6 @@ public class Gps_serial {
         Timestamp tiempo = new Timestamp(System.currentTimeMillis());
         return tiempo.toString();
     }
+    
+    //funciones para base de datos
 }
