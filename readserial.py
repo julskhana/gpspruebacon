@@ -4,7 +4,7 @@ from gps import *
 import time
     
 gpsd = gps(mode=WATCH_ENABLE|WATCH_NEWSTYLE) 
-print 'latitude,longitude,time utc,altitude,epv,ept,speed,climb' # '\t' = TAB to try and output the data in columns.
+#print 'latitude,longitude,time utc,altitude,epv,ept,speed,climb' # '\t' = TAB to try and output the data in columns.
    
 try:
  

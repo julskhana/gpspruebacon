@@ -29,17 +29,19 @@ public class Gps_serial {
         p.waitFor();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
             String tramagps;
+            System.out.println("Obeteniendo datos...");
             if ((tramagps = br.readLine()) != null){
                 System.out.println("Trama GPS obtenida:"+tramagps);
                 System.out.println("DATOS OBTENIDOS");
                 String[] datos = tramagps.split(",");
-                String horafecha = generertiempo();
-                String latitud = datos[3];
-                String longitud = datos[5];
-                String altura = datos[8];
-                System.out.println("Tiempo:\t\t"+horafecha);
+                //String horafecha = generertiempo();
+                String latitud = datos[0];
+                String longitud = datos[1];
+                String tiempo = datos[2];
+                String altura = datos[3];
                 System.out.println("Latitud:\t"+latitud);
                 System.out.println("Longitud:\t"+longitud);
+                System.out.println("Tiempo:\t\t"+tiempo);
                 System.out.println("Altura:\t\t"+altura+" m");
                 /*
                 try{
