@@ -25,36 +25,40 @@ public class Gps_serial {
         */
         System.out.println("Programa GPS - Lector de trama GPRMC");
         System.out.println("Ejecutando Script en python...");
-        Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
-        //p.waitFor();
-        //p.getInputStream();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
-            String tramagps;
-            System.out.println("Obeteniendo datos...");
-            if ((tramagps = br.readLine()) != null){
-                System.out.println("Trama GPS obtenida:"+tramagps);
-                System.out.println("DATOS OBTENIDOS");
-                String[] datos = tramagps.split(",");
-                //String horafecha = generertiempo();
-                String latitud = datos[0];
-                String longitud = datos[1];
-                String tiempo = datos[2];
-                String altura = datos[3];
-                System.out.println("Latitud:\t"+latitud);
-                System.out.println("Longitud:\t"+longitud);
-                System.out.println("Tiempo:\t\t"+tiempo);
-                System.out.println("Altura:\t\t"+altura+" m");
-                /*
-                try{
-                    ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
-                    ConexionBD c = new ConexionBD();
-                    c.conectar();
-                    c.ingresarUbicacion(u);
-                }catch(Exception e){
-                    System.out.println("Error: "+e);
-                }*/
-            }
-        } 
+        int i;
+        for(i=0;i<10;i++){
+            Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
+            p.waitFor();
+            //p.getInputStream();
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+                String tramagps;
+                System.out.println(i+". Obteniendo datos...");
+                if ((tramagps = br.readLine()) != null){
+                    System.out.println("Trama GPS obtenida:"+tramagps);
+                    System.out.println("DATOS OBTENIDOS");
+                    String[] datos = tramagps.split(",");
+                    //String horafecha = generertiempo();
+                    String latitud = datos[0];
+                    String longitud = datos[1];
+                    String tiempo = datos[2];
+                    String altura = datos[3];
+                    System.out.println("Latitud:\t"+latitud);
+                    System.out.println("Longitud:\t"+longitud);
+                    System.out.println("Tiempo:\t\t"+tiempo);
+                    System.out.println("Altura:\t\t"+altura+" m");
+                    /*
+                    try{
+                        ubicacion u = new ubicacion(Float.valueOf(latitud),Float.valueOf(longitud),Float.valueOf(altura),horafecha,1);
+                        ConexionBD c = new ConexionBD();
+                        c.conectar();
+                        c.ingresarUbicacion(u);
+                    }catch(Exception e){
+                        System.out.println("Error: "+e);
+                    }*/
+                }
+            }    
+        }
+         
     }
     
     //funciones
