@@ -30,8 +30,8 @@ public class Gps_serial {
         int i;
         ConexionBD c = new ConexionBD();
         for(i=0;i<10;i++){
-            //Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
-            Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "readserial.py" });
+            Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
+            //Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "readserial.py" });
             p.waitFor();
             //p.getInputStream();
             try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
@@ -66,9 +66,8 @@ public class Gps_serial {
                     }
                 }
             }
-            System.out.println("Fin de transmision GPS...");
         }
-         
+        System.out.println("Fin de transmision GPS...");
     }
     
     //funciones
