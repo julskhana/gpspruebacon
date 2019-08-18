@@ -5,9 +5,11 @@
  */
 package objetos;
 
+import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
-public class ubicacion {
+public class ubicacion implements Serializable{
     
     private int id;
     private float latitud;
@@ -39,7 +41,7 @@ public class ubicacion {
         this.id_dispositivo = id_dispositivo;
     }
     
-    //ingreso 2
+    //ingreso con tiempo en base
 
     public ubicacion(float latitud, float longitud, float elevacion, int id_dispositivo) {
         this.latitud = latitud;
@@ -47,9 +49,8 @@ public class ubicacion {
         this.elevacion = elevacion;
         this.id_dispositivo = id_dispositivo;
     }
-    
-    //set
 
+    //set
     public void setId(int id) {
         this.id = id;
     }

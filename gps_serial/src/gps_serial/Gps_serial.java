@@ -51,16 +51,22 @@ public class Gps_serial {
                     System.out.println("Tiempo:\t\t"+tiempo);
                     System.out.println("Altura:\t\t"+altura+" m");
                     //conversion de datos
+                    System.out.println("Convirtiendo datos...");
                     float latitudf = Float.valueOf(latitud);
                     float longitudf = Float.valueOf(longitud);
                     float alturaf = Float.valueOf(altura);
-                    Timestamp tiempof = Timestamp.valueOf(tiempo);
-                    
+                    //Timestamp tiempof = Timestamp.valueOf(tiempo);
                     try{
-                        ubicacion u = new ubicacion(latitudf, longitudf, alturaf, tiempof,1);
-                        
                         c.conectar();
-                        c.ingresarUbicacion(u);
+                        System.out.println("Ingresando datos a BD...");
+                        ubicacion u = new ubicacion(latitudf, longitudf, alturaf,1);
+                        System.out.println("datos obtenidos: "+latitudf+","+longitudf+","+alturaf);
+                        //ingresando ubicacion a la basede datos
+                        if(c.ingresarUbicacion(u)){
+                            System.out.println("Datos ingresados...");
+                        }else{
+                            System.out.println("Error, datos no ingresados...");
+                        }
                     }catch(Exception e){
                         System.out.println("Error: "+e);
                     }
