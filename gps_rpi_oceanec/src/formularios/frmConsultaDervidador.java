@@ -38,7 +38,6 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btConsultar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -50,11 +49,14 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
         txaltitud = new javax.swing.JTextField();
         txtiempo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        txMac = new javax.swing.JTextField();
+        Buscar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txIdDerivador = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizador de Derivadores");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Derivador #1", "Derivador #2" }));
 
         jLabel1.setText("Dispositivo:");
 
@@ -92,35 +94,62 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
 
         jLabel6.setText("[m]");
 
+        txMac.setEditable(false);
+
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jLabel7.setText("Última Ubicación");
+
+        txIdDerivador.setEditable(false);
+
+        jLabel8.setText("ID:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txlatitud)
+                    .addComponent(txlongitud)
+                    .addComponent(txaltitud)
+                    .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addContainerGap(80, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(btConsultar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txlatitud)
-                            .addComponent(txlongitud)
-                            .addComponent(txaltitud)
-                            .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(btConsultar)))
+                .addGap(129, 129, 129))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txIdDerivador)
+                    .addComponent(txMac))
+                .addGap(18, 18, 18)
+                .addComponent(Buscar)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +157,17 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btConsultar))
-                .addGap(18, 18, 18)
+                    .addComponent(txMac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Buscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txIdDerivador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btConsultar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txlatitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,7 +184,7 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -180,10 +217,14 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
             //desplegar gps
             //formato: https://www.google.es/maps/@-2.1857535,-79.8794031,16.13z
             //formato 2: https://www.google.es/maps/place/0%C2%B055'15.0%22S+80%C2%B043'44.6%22W/@-0.9089078,-80.7566963,12.46z/data=!4m5!3m4!1s0x0:0x0!8m2!3d-0.9208329!4d-80.729065
+            //formato 3: https://www.google.com/maps/search/?api=1&query=58.698017,-152.522067
             Desktop navegador = Desktop.getDesktop();
             try {
                 //navegador.browse(new URI("http://www.google.es/maps/@"+latitud+","+longitud+"5.0z"));
-                navegador.browse(new URI("http://www.google.es/maps/@"+latitud+","+longitud+"5.0z"));
+                //navegador.browse(new URI("http://www.google.es/maps/@"+latitud+","+longitud+"5.0z"));
+                
+                navegador.browse(new URI("https://www.google.com/maps/search/?api=1&query="+latitud+","+longitud));
+                
             } catch (IOException | URISyntaxException e) {
                 System.out.println("Error al abrir navegador: "+e);
             }
@@ -198,20 +239,30 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txlatitudActionPerformed
 
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        // TODO add your handling code here:
+        frmSeleccionarDerivador selder = new frmSeleccionarDerivador();
+        selder.setVisible(true);
+    }//GEN-LAST:event_BuscarActionPerformed
+
     
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
     private javax.swing.JButton btConsultar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    public static javax.swing.JTextField txIdDerivador;
+    public static javax.swing.JTextField txMac;
     private javax.swing.JTextField txaltitud;
     private javax.swing.JTextField txlatitud;
     private javax.swing.JTextField txlongitud;

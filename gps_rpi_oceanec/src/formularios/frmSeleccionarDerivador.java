@@ -46,7 +46,7 @@ public class frmSeleccionarDerivador extends javax.swing.JFrame {
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "MAC", "Nombre" }));
 
-        btBuscar.setText("Consultar");
+        btBuscar.setText("Buscar");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBuscarActionPerformed(evt);
@@ -77,6 +77,11 @@ public class frmSeleccionarDerivador extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbDerivador);
 
         btSeleccionar.setText("Seleccionar");
+        btSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSeleccionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +127,37 @@ public class frmSeleccionarDerivador extends javax.swing.JFrame {
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
-        
+        consultarRegistro();
+    }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void btSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSeleccionarActionPerformed
+        // TODO add your handling code here:
+        if(seleccionValida()){
+            int fila = tbDerivador.getSelectedRow();
+            
+            int id = Integer.parseInt(tbDerivador.getValueAt(fila,0).toString());
+            String mac = tbDerivador.getValueAt(fila,1).toString();
+            
+            dispositivo disp = new dispositivo(id, mac);
+            frmConsultaDervidador.txIdDerivador.setText(String.valueOf(id));
+            frmConsultaDervidador.txMac.setText(mac);
+            this.dispose();
+        }else{
+            consultarRegistro();
+        }
+        consultarRegistro();
+    }//GEN-LAST:event_btSeleccionarActionPerformed
+
+    private boolean seleccionValida(){ 
+        int n = tbDerivador.getSelectedRowCount();
+        if(n==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro.","Seleccion",JOptionPane.ERROR_MESSAGE);
+            return false;        
+        }
+        return true;
+    }
+    
+    public void consultarRegistro(){
         String tipo = cbTipo.getSelectedItem().toString();
         String descripcion = txDescripcion.getText();        
         //consultar
@@ -177,8 +212,8 @@ public class frmSeleccionarDerivador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar derivadores","Consulta",JOptionPane.ERROR_MESSAGE);
             System.out.println("consulta de registros derivadores: "+e);
         }
-    }//GEN-LAST:event_btBuscarActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */

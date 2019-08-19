@@ -41,6 +41,14 @@ public class dispositivo implements Serializable{
         this.descripcion = descripcion;
     }
     
+    //seleccionar
+
+    public dispositivo(int id, String mac) {
+        this.id = id;
+        this.mac = mac;
+    }
+    
+    
     //funciones set
     
     public void setId(int id) {

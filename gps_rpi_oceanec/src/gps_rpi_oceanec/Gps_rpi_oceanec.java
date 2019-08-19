@@ -5,13 +5,7 @@
  */
 package gps_rpi_oceanec;
 
-import bd.ConexionBD;
 import formularios.frmLogin;
-import formularios.frmPrincipal;
-import java.sql.Timestamp;
-import java.sql.Date;
-import java.util.Random;
-import objetos.ubicacion;
 
 public class Gps_rpi_oceanec {
     
@@ -31,11 +25,11 @@ public class Gps_rpi_oceanec {
         System.out.println("\nIniciando programa...");
         
         
-        //frmLogin aut = new frmLogin();
-        //aut.setVisible(true);
+        frmLogin aut = new frmLogin();
+        aut.setVisible(true);
         
-        frmPrincipal pr = new frmPrincipal();
-        pr.setVisible(true);
+        //frmPrincipal pr = new frmPrincipal();
+        //pr.setVisible(true);
         
         /*
         float latitud = funciones.gps.generarlatitud();

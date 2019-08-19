@@ -143,6 +143,20 @@ public class frmDerivadores extends javax.swing.JFrame {
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
         
+        
+    }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void tbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbNuevoActionPerformed
+        // TODO add your handling code here:
+        frmIngresarDerivador inder = new frmIngresarDerivador();
+        inder.setVisible(true);
+    }//GEN-LAST:event_tbNuevoActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    public void consultarRegistro(){
         String tipo = cbTipo.getSelectedItem().toString();
         String descripcion = txDescripcion.getText();        
         //consultar
@@ -197,17 +211,7 @@ public class frmDerivadores extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar derivadores","Consulta",JOptionPane.ERROR_MESSAGE);
             System.out.println("consulta de registros derivadores: "+e);
         }
-    }//GEN-LAST:event_btBuscarActionPerformed
-
-    private void tbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbNuevoActionPerformed
-        // TODO add your handling code here:
-        frmIngresarDerivador inder = new frmIngresarDerivador();
-        inder.setVisible(true);
-    }//GEN-LAST:event_tbNuevoActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
