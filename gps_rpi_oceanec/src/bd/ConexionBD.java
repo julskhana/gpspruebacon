@@ -291,6 +291,29 @@ public class ConexionBD {
         }
     }
     
+    public ubicacion consultarUltimaUbiacion(){
+        ubicacion ubi = new ubicacion();
+        try{
+            Statement st = this.con.createStatement();            
+            ResultSet rs = null;
+            rs = st.executeQuery("SELECT * FROM ubicacion ORDER BY id DESC LIMIT 1;");
+            rs.next();
+            
+            ubi.setId(rs.getInt("id"));
+            ubi.setLatitud(rs.getFloat("latitud"));
+            ubi.setLongitud(rs.getFloat("longitud"));
+            ubi.setElevacion(rs.getFloat("elevacion"));
+            ubi.setTiempo(rs.getTimestamp("tiempo"));
+            ubi.setId_dispositivo(rs.getInt("id_dispositivo"));
+            
+            rs.close();
+            
+            System.out.println("Ubicacion consultada...");
+        }catch (SQLException e){
+            System.out.println("Error en la consulta de ubicacion - sql : "+e);
+        }
+        return ubi;
+    }
     /*
     public boolean ingresarOperador(dispositivo ubi) {
         try{

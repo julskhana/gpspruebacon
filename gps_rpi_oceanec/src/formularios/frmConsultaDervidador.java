@@ -48,12 +48,13 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
         txlongitud = new javax.swing.JTextField();
         txaltitud = new javax.swing.JTextField();
         txtiempo = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         txMac = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txIdDerivador = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizador de Derivadores");
@@ -76,7 +77,6 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
         jLabel5.setText("Tiempo:");
 
         txlatitud.setEditable(false);
-        txlatitud.setText("-0.9260204");
         txlatitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txlatitudActionPerformed(evt);
@@ -84,15 +84,10 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
         });
 
         txlongitud.setEditable(false);
-        txlongitud.setText("-80.744644");
 
         txaltitud.setEditable(false);
-        txaltitud.setText("0.23523581");
 
         txtiempo.setEditable(false);
-        txtiempo.setText("2019-08-01 21:41:04.469");
-
-        jLabel6.setText("[m]");
 
         txMac.setEditable(false);
 
@@ -110,81 +105,92 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
 
         jLabel8.setText("ID:");
 
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-circuit-48.png"))); // NOI18N
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-location-16.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txlatitud)
-                    .addComponent(txlongitud)
-                    .addComponent(txaltitud)
-                    .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(80, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(btConsultar)))
-                .addGap(129, 129, 129))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txIdDerivador)
-                    .addComponent(txMac))
-                .addGap(18, 18, 18)
-                .addComponent(Buscar)
-                .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel7)
+                                .addGap(29, 29, 29))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txlatitud)
+                                    .addComponent(txlongitud)
+                                    .addComponent(txaltitud)
+                                    .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txIdDerivador, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                                    .addComponent(txMac))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Buscar)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btConsultar)
+                        .addGap(153, 153, 153))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txMac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txIdDerivador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btConsultar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txMac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Buscar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txIdDerivador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txlatitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txlongitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txaltitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                .addComponent(btConsultar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txlatitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txlongitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txaltitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel10))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,47 +198,57 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
 
     private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
         // TODO add your handling code here:
-        
-        float latitud = funciones.gps.generarlatitud();
-        float longitud = funciones.gps.generarlongitud();
-        float elevacion = funciones.gps.generarelevacion();
-        
-        txlatitud.setText(String.valueOf(latitud));
-        txlongitud.setText(String.valueOf(longitud));
-        txaltitud.setText(String.valueOf(elevacion));
-        txtiempo.setText(String.valueOf(funciones.gps.generertiempo()));
-        try {
-            ConexionBD c = new ConexionBD();
-            c.conectar();
-            ubicacion u = new ubicacion(latitud, longitud, elevacion,1);
-            c.ingresarUbicacion(u);
-            if (Float.valueOf(txlatitud.getText()) < -0.93f){
-                System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
-                evento ev = new evento("Rango","El dispisitivo esta fuera de rango.", latitud, longitud, elevacion, repetidor);
-                c.ingresarEvento(ev);
-                JOptionPane.showMessageDialog(this,"El dispositivo esta fuera de la zona permitida.","Alerta GPS",JOptionPane.ERROR_MESSAGE);
-            }
-            c.desconectar();
+        if(txIdDerivador.getText().length()>0){
+            /*
+            float latitud = funciones.gps.generarlatitud();
+            float longitud = funciones.gps.generarlongitud();
+            float elevacion = funciones.gps.generarelevacion();
+
+            txlatitud.setText(String.valueOf(latitud));
+            txlongitud.setText(String.valueOf(longitud));
+            txaltitud.setText(String.valueOf(elevacion)+" m");
+            txtiempo.setText(String.valueOf(funciones.gps.generertiempo()));
+            */
             
-            //desplegar gps
-            //formato: https://www.google.es/maps/@-2.1857535,-79.8794031,16.13z
-            //formato 2: https://www.google.es/maps/place/0%C2%B055'15.0%22S+80%C2%B043'44.6%22W/@-0.9089078,-80.7566963,12.46z/data=!4m5!3m4!1s0x0:0x0!8m2!3d-0.9208329!4d-80.729065
-            //formato 3: https://www.google.com/maps/search/?api=1&query=58.698017,-152.522067
-            Desktop navegador = Desktop.getDesktop();
             try {
-                //navegador.browse(new URI("http://www.google.es/maps/@"+latitud+","+longitud+"5.0z"));
-                //navegador.browse(new URI("http://www.google.es/maps/@"+latitud+","+longitud+"5.0z"));
+                ConexionBD c = new ConexionBD();
+                c.conectar();
+                ubicacion u = c.consultarUltimaUbiacion();
+                //agragar datos a cajas de texto
+                txlatitud.setText(String.valueOf(u.getLatitud()));
+                txlongitud.setText(String.valueOf(u.getLongitud()));
+                txaltitud.setText(String.valueOf(u.getElevacion())+" m");
+                txtiempo.setText(String.valueOf(u.getTiempo()));
                 
-                navegador.browse(new URI("https://www.google.com/maps/search/?api=1&query="+latitud+","+longitud));
-                
-            } catch (IOException | URISyntaxException e) {
-                System.out.println("Error al abrir navegador: "+e);
+                c.ingresarUbicacion(u);
+                if (Float.valueOf(txlatitud.getText()) < -0.93f){
+                    System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
+                    evento ev = new evento("Rango","El dispisitivo esta fuera de rango.", u.getLatitud(), u.getLongitud(), u.getElevacion(), repetidor);
+                    c.ingresarEvento(ev);
+                    JOptionPane.showMessageDialog(this,"El dispositivo esta fuera de la zona permitida.","Alerta GPS",JOptionPane.ERROR_MESSAGE);
+                }
+                c.desconectar();
+
+                //desplegar gps
+                //formato: https://www.google.es/maps/@-2.1857535,-79.8794031,16.13z
+                //formato 2: https://www.google.es/maps/place/0%C2%B055'15.0%22S+80%C2%B043'44.6%22W/@-0.9089078,-80.7566963,12.46z/data=!4m5!3m4!1s0x0:0x0!8m2!3d-0.9208329!4d-80.729065
+                //formato 3: https://www.google.com/maps/search/?api=1&query=58.698017,-152.522067
+                Desktop navegador = Desktop.getDesktop();
+                try {
+                    //navegador.browse(new URI("http://www.google.es/maps/@"+latitud+","+longitud+"5.0z"));
+                    //navegador.browse(new URI("http://www.google.es/maps/@"+latitud+","+longitud+"5.0z"));
+
+                    navegador.browse(new URI("https://www.google.com/maps/search/?api=1&query="+u.getLatitud()+","+u.getLongitud()));
+
+                } catch (IOException | URISyntaxException e) {
+                    System.out.println("Error al abrir navegador: "+e);
+                }
+            } catch (Exception e) {
+                System.out.println("Error: "+e);
             }
-        } catch (Exception e) {
-            System.out.println("Error: "+e);
+        }else{
+            JOptionPane.showMessageDialog(this,"Debe seleccionar un derivador.","GPS",JOptionPane.ERROR_MESSAGE);
         }
-        
- 
     }//GEN-LAST:event_btConsultarActionPerformed
 
     private void txlatitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txlatitudActionPerformed
@@ -254,13 +270,14 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
     private javax.swing.JButton Buscar;
     private javax.swing.JButton btConsultar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public static javax.swing.JTextField txIdDerivador;
     public static javax.swing.JTextField txMac;
     private javax.swing.JTextField txaltitud;
