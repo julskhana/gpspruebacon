@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/Julian/Documents/juls_github/gpspruebacon/gps_rpi_oceanec/src/gps_rpi_oceanec/Gps_rpi_oceanec.java</file>
             <file>file:/C:/Users/Julian/Documents/juls_github/gpspruebacon/gps_rpi_oceanec/src/formularios/frmConsultaDervidador.java</file>
+            <file>file:/C:/Users/Julian/Documents/juls_github/gpspruebacon/gps_rpi_oceanec/src/bd/ConexionBD.java</file>
+            <file>file:/C:/Users/Julian/Documents/juls_github/gpspruebacon/gps_rpi_oceanec/src/formularios/frmAcercaDe.java</file>
         </group>
     </open-files>
 </project-private>
