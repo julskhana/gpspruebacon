@@ -13,7 +13,7 @@ import objetos.dispositivo;
 
 /**
  *
- * @author Julian
+ * @author Leonel
  */
 public class frmEventos extends javax.swing.JFrame {
 

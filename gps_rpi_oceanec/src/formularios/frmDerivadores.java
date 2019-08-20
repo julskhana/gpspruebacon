@@ -13,7 +13,7 @@ import objetos.dispositivo;
 
 /**
  *
- * @author Julian
+ * @author Daniel
  */
 public class frmDerivadores extends javax.swing.JFrame {
 

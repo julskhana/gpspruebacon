@@ -13,7 +13,7 @@ import objetos.dispositivo;
 
 /**
  *
- * @author Julian
+ * @author Daniel
  */
 public class frmUsuarios extends javax.swing.JFrame {
 

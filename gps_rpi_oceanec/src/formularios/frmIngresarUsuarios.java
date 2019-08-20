@@ -11,7 +11,7 @@ import objetos.usuario;
 
 /**
  *
- * @author Julian
+ * @author Leonel
  */
 public class frmIngresarUsuarios extends javax.swing.JFrame {
 

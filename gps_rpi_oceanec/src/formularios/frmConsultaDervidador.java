@@ -16,7 +16,7 @@ import objetos.ubicacion;
 
 /**
  *
- * @author Julian
+ * @author Daniel
  */
 public class frmConsultaDervidador extends javax.swing.JFrame {
 

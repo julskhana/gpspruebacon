@@ -11,7 +11,7 @@ import objetos.usuario;
 
 /**
  *
- * @author Julian
+ * @author Leonel
  */
 public class frmLogin extends javax.swing.JFrame {
 
@@ -151,7 +151,7 @@ public class frmLogin extends javax.swing.JFrame {
                 u = c.obtenerDatosUsuario(txUsuario.getText());
                 JOptionPane.showMessageDialog(null,"Bienvenido "+u.getNombre(),"Autenticación",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Usuario correcto");
-                frmPrincipal pr = new frmPrincipal();
+                frmPrincipal pr = new frmPrincipal(u);
                 this.dispose();
                 pr.setVisible(true);
                 u.setClave(null);

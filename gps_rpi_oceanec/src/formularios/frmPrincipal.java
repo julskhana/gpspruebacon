@@ -6,18 +6,24 @@
 package formularios;
 
 import javax.swing.JOptionPane;
+import objetos.usuario;
 
 /**
  *
- * @author Julian
+ * @author Leonel
  */
 public class frmPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form frmPrincipal
      */
-    public frmPrincipal() {
+    public static usuario userAct;
+    
+    public frmPrincipal(usuario u) {
         initComponents();
+        
+        txuser.setText(u.getNombre());
+        userAct = u;
     }
 
     /**
@@ -29,6 +35,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        txuser = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArchivo = new javax.swing.JMenu();
         mnCuenta = new javax.swing.JMenuItem();
@@ -45,9 +53,18 @@ public class frmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal - Derivador GPS");
 
+        jLabel1.setText("Usuario Activo:");
+
+        txuser.setEditable(false);
+
         mArchivo.setText("Archivo");
 
         mnCuenta.setText("Cuenta");
+        mnCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnCuentaActionPerformed(evt);
+            }
+        });
         mArchivo.add(mnCuenta);
 
         mnSalir.setText("Salir");
@@ -118,11 +135,21 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txuser, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(444, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 377, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(346, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -164,11 +191,18 @@ public class frmPrincipal extends javax.swing.JFrame {
         ubis.setVisible(true);
     }//GEN-LAST:event_mnVerUbicacionesActionPerformed
 
+    private void mnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCuentaActionPerformed
+        // TODO add your handling code here:
+        frmCuentaUsuario cuenta = new frmCuentaUsuario(userAct);
+        cuenta.setVisible(true);
+    }//GEN-LAST:event_mnCuentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu mAcciones;
     private javax.swing.JMenu mArchivo;
@@ -181,5 +215,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnUsuarios;
     private javax.swing.JMenuItem mnVerDerivador;
     private javax.swing.JMenuItem mnVerUbicaciones;
+    private javax.swing.JTextField txuser;
     // End of variables declaration//GEN-END:variables
 }

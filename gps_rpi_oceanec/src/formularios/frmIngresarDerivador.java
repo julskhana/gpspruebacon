@@ -11,7 +11,7 @@ import objetos.dispositivo;
 
 /**
  *
- * @author Julian
+ * @author Leonel
  */
 public class frmIngresarDerivador extends javax.swing.JFrame {
 

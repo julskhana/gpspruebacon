@@ -14,7 +14,7 @@ import objetos.ubicacion;
 
 /**
  *
- * @author Julian
+ * @author Leonel
  */
 public class frmUbicaciones extends javax.swing.JFrame {
 
