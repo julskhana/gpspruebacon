@@ -29,7 +29,7 @@ public class Gps_serial {
         System.out.println("Ejecutando Script en python...");
         int i;
         ConexionBD c = new ConexionBD();
-        for(i=0;i<10;i++){
+        for(i=0;i<100;i++){
             Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "python /home/pi/gpspruebacon/readserial.py" });
             //Process p = Runtime.getRuntime().exec(new String[] {"/bin/bash", "-c", "readserial.py" });
             p.waitFor();

@@ -18,7 +18,7 @@ public class ConexionBD {
        private static final String PORT = "3306";
        //base de datos
        private static final String DATABASE = "base_gps";  //cortejamiento: utf8_spanish_ci
-       private static final String USER = "root";
+       private static final String USER = "gps";
        private static final String PASSWORD = "";
 
     void Conexion(){}
