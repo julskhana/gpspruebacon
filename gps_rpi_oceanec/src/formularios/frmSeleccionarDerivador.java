@@ -126,21 +126,23 @@ public class frmSeleccionarDerivador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        // TODO add your handling code here:
+        // accion que realiza el programa al presionar boton Buscar
         consultarRegistro();
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSeleccionarActionPerformed
-        // TODO add your handling code here:
+        // toma un objeto de la tabla consultada y lo agrega en formulario anterior
         if(seleccionValida()){
+            //selecciona un item en la tabla
             int fila = tbDerivador.getSelectedRow();
-            
+            //obtiene datos de item seleccionado
             int id = Integer.parseInt(tbDerivador.getValueAt(fila,0).toString());
             String mac = tbDerivador.getValueAt(fila,1).toString();
-            
+            //genera un elemento de la clase ubicacion y llena datos ID y MAC
             dispositivo disp = new dispositivo(id, mac);
-            frmConsultaDervidador.txIdDerivador.setText(String.valueOf(id));
-            frmConsultaDervidador.txMac.setText(mac);
+            //cambia texto en frmConsularDerivador
+            frmConsultaDervidador.txIdDerivador.setText(String.valueOf(disp.getId()));
+            frmConsultaDervidador.txMac.setText(String.valueOf(disp.getMac()));
             this.dispose();
         }else{
             consultarRegistro();

@@ -18,18 +18,19 @@ public class Gps_rpi_oceanec {
     
     //$GPRMC,142224.000,A,0208.1668,S,07955.2164,W,0.00,157.16,280719,,,D*6A
     
-    private static final int IDDISP = 1;
+    //private static final int IDDISP = 1;
 
     public static void main(String[] args) {
         System.out.println("Aplicacion GPS RPi");
         System.out.println("\nIniciando programa...");
         
+        //descomentar para entrar directo a frmPrincipal
+        frmLogin autenticacion = new frmLogin();
+        autenticacion.setVisible(true);
         
-        frmLogin aut = new frmLogin();
-        aut.setVisible(true);
-        
-        //frmPrincipal pr = new frmPrincipal();
-        //pr.setVisible(true);
+        //comentar para entrar directo a formulario principal
+        //frmPrincipal principal = new frmPrincipal();
+        //principal.setVisible(true);
         
         /*
         float latitud = funciones.gps.generarlatitud();

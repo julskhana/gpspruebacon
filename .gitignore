@@ -11,11 +11,11 @@
 .mtj.tmp/
 
 # Package Files #
-#*.jar
+*.jar
 *.war
 *.nar
 *.ear
-#*.zip
+*.zip
 *.tar.gz
 *.rar
 
@@ -24,3 +24,5 @@ hs_err_pid*
 /gps_serial/dist/
 /gps_serial/build/
 /gps_rpi_oceanec/dist/
+/gps_rpi_oceanec/nbproject/private/private.properties
+/gps_rpi_oceanec/nbproject/private/private.xml

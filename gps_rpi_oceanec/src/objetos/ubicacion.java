@@ -6,7 +6,6 @@
 package objetos;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ubicacion implements Serializable{

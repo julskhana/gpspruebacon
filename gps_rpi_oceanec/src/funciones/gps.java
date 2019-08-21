@@ -49,4 +49,8 @@ public class gps {
         return tiempo.toString();
     }
     
+    public static Timestamp generertiempo2(){
+        Timestamp tiempo = new Timestamp(System.currentTimeMillis());
+        return tiempo;
+    }
 }

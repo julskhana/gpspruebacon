@@ -9,7 +9,6 @@ import bd.ConexionBD;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import objetos.dispositivo;
 import objetos.ubicacion;
 
 /**
@@ -112,8 +111,7 @@ public class frmUbicaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        // TODO add your handling code here:
-        
+        // metodo buscar objetos de clase ubicacion, formulario de mantenimiento
         String tipo = cbTipo.getSelectedItem().toString();
         String descripcion = txDescripcion.getText();        
         //consultar

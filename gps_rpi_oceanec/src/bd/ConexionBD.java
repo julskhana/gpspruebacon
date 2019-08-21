@@ -9,12 +9,9 @@ public class ConexionBD {
        private Connection con;
        //driver netbeans
        private static final String DRIVER = "com.mysql.jdbc.Driver";
-       
-       //driver para javac
-       //private static final String DRIVER = "SQLdriver/mysql-connector-java-5.1.43-bin.jar";
-       
+       //datos del servidor SQL
        private static final String DBMS = "mysql";
-       private static final String HOST = "127.0.0.1";
+       private static final String HOST = "127.0.0.1"; 
        private static final String PORT = "3306";
        //base de datos
        private static final String DATABASE = "base_gps";  //cortejamiento: utf8_spanish_ci
@@ -49,6 +46,7 @@ public class ConexionBD {
         }    
     }
 
+    //metodo para ingresar objetos de la clase ubicacion
     public boolean ingresarUbicacion(ubicacion ubi){
         try{
             PreparedStatement st = null;
@@ -62,11 +60,12 @@ public class ConexionBD {
             System.out.println("Se ingreso la ubicacion a la base de datos...");
             return true;
         }catch (SQLException e){
-            System.out.println("Error la ingresar la ubicacion a la base de datos... " +e);
+            System.out.println("Error la ingresar la ubicacion a la base de datos... "+e);
             return false;
         }
     }
       
+    //metodo para validad clave del usuario
     public boolean esUsuarioValido(usuario u){        
         boolean resultado = false;
         ResultSet rs = null;
@@ -91,6 +90,7 @@ public class ConexionBD {
      return resultado; 
     }
     
+    //metodo para obtener datos de usuario ingresado
     public usuario obtenerDatosUsuario(String cuenta){
         usuario u = new usuario();
         ResultSet rs = null;                       
@@ -111,11 +111,12 @@ public class ConexionBD {
             rs.close();
             st.close();
         }catch(SQLException e){
-            System.out.println(e);
+            System.out.println("Error al consultar datos de usuario..." +e);
         }           
         return u; 
     }
     
+    //metodo para obtener datos de dispositivos/derivadores
     public dispositivo obtenerDatosDerivador(int dispositivo){
         dispositivo disp = new dispositivo();
         ResultSet rs = null;                       
@@ -139,6 +140,7 @@ public class ConexionBD {
         return disp; 
     }
 
+    //metodo para generar lista de derivadores consultados
     public ArrayList<dispositivo> consultarDispositivos(String busqueda, String tipo){
         ArrayList<dispositivo> registro = new ArrayList<dispositivo>();
         try{
@@ -168,6 +170,7 @@ public class ConexionBD {
         return registro;
     } 
     
+    //metodo para generar lista de ubicaciones desde tabla en base de datos
     public ArrayList<ubicacion> consultarUbicacion(String busqueda, String tipo){
         ArrayList<ubicacion> registro = new ArrayList<ubicacion>();
         try{
@@ -188,9 +191,9 @@ public class ConexionBD {
                 float elevacion = rs.getFloat("elevacion");
                 Timestamp tiempo = rs.getTimestamp("tiempo");
                 int id_derivador = rs.getInt("id_dispositivo");
-                
+                //genera objeto de la clase ubicacion
                 ubicacion ubi = new ubicacion(id, latitud, longitud, elevacion, tiempo, id_derivador);
-                
+                //guarda objetos en array list
                 registro.add(ubi);
             }
             System.out.println("Ubicaciones consultados...");
@@ -200,6 +203,7 @@ public class ConexionBD {
         return registro;
     }
     
+    //metodo para generar lista de eventos
     public ArrayList<evento> consultarEventos(String busqueda, String tipo){
         ArrayList<evento> registro = new ArrayList<evento>();
         try{
@@ -221,6 +225,7 @@ public class ConexionBD {
                 Timestamp tiempo = rs.getTimestamp("tiempo");
                 int id_derivador = rs.getInt("id_dispositivo");
                 
+                evento eve = new evento(id, tipo, tipo, tipo, id_derivador, latitud, longitud, elevacion);
                 //ubicacion ubi = new ubicacion(id, latitud, longitud, elevacion, tiempo, id_derivador);
                 
                 //registro.add(ubi);
@@ -232,6 +237,7 @@ public class ConexionBD {
         return registro;
     }
     
+    //metodo para ingresar derivadores a la base de datos
     public boolean ingresarDerivador(dispositivo der) {
         try{
             PreparedStatement st=null;
@@ -250,7 +256,6 @@ public class ConexionBD {
     }
     
     //INSERT INTO evento (tipo,descripcion,tiempo,id_derivador) VALUES();
-    
     public boolean ingresarEvento(evento ev) {
         try{
             PreparedStatement st=null;
@@ -271,6 +276,7 @@ public class ConexionBD {
         }
     }
     
+    //metodo par aingresar usuarios en base de datos
     public boolean ingresarUsuario(usuario u) {
         try{
             PreparedStatement st=null;
@@ -291,11 +297,13 @@ public class ConexionBD {
         }
     }
     
+    //metodo para obtener ultima ubicacion de un derivador
     public ubicacion consultarUltimaUbiacion(){
         ubicacion ubi = new ubicacion();
         try{
             Statement st = this.con.createStatement();            
             ResultSet rs = null;
+            
             rs = st.executeQuery("SELECT * FROM ubicacion ORDER BY id DESC LIMIT 1;");
             rs.next();
             
