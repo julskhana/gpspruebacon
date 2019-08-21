@@ -46,7 +46,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txDescripcion" min="-2" pref="274" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btBuscar" min="-2" pref="115" max="-2" attributes="0"/>
+                              <Component id="btConsultar" min="-2" pref="115" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -63,7 +63,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbTipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -97,12 +97,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btBuscar">
+    <Component class="javax.swing.JButton" name="btConsultar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btConsultarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

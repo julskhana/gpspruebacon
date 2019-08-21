@@ -322,6 +322,39 @@ public class ConexionBD {
         }
         return ubi;
     }
+    
+    public ArrayList<usuario> consultarUsuarios(String busqueda, String tipo){
+        ArrayList<usuario> registro = new ArrayList<usuario>();
+        try{
+            Statement st = this.con.createStatement();            
+            ResultSet rs = null;
+            System.out.println(busqueda);
+            System.out.println(tipo);
+            if(tipo.equalsIgnoreCase("usuario")){
+                rs = st.executeQuery("SELECT * FROM usuario;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM usuario WHERE "+tipo+" LIKE '%"+busqueda+"%';");
+            }
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String cuenta = rs.getString("cuenta");
+                //String clave = rs.getString("clave");
+                String nombre = rs.getString("nombre");
+                String cedula = rs.getString("cedula");
+                String telefono = rs.getString("telefono");
+                String rol = rs.getString("rol");
+                //genera objeto de la clase usuario
+                usuario user = new usuario(id, cuenta, nombre, cedula, telefono, rol);
+                //guarda objetos en array list
+                registro.add(user);
+            }
+            System.out.println("Usuarios consultados...");
+        }catch (SQLException e){
+            System.out.println("Error en la consulta de usuarios - sql : "+e);
+        }
+        return registro;
+    }
+    
     /*
     public boolean ingresarOperador(dispositivo ubi) {
         try{

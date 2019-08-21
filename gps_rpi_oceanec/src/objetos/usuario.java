@@ -40,11 +40,23 @@ public class usuario implements Serializable{
         this.rol = rol;
     }
     
-    //consultar
+    //consultar valida
     public usuario(String cuenta, String clave) {
         this.cuenta = cuenta;
         this.clave = clave;
     }
+    
+    //consulta frm
+
+    public usuario(int id, String cuenta, String nombre, String cedula, String telefono, String rol) {
+        this.id = id;
+        this.cuenta = cuenta;
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.rol = rol;
+    }
+    
     
     //set
 
