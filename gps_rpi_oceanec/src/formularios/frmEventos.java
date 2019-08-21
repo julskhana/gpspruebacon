@@ -113,7 +113,7 @@ public class frmEventos extends javax.swing.JFrame {
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
-        
+        consultarRegistro();
     }//GEN-LAST:event_btBuscarActionPerformed
 
     /**

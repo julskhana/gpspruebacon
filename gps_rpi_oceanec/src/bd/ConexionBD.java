@@ -222,7 +222,7 @@ public class ConexionBD {
                 String tipo_eve = rs.getString("tipo");
                 String descripcion = rs.getString("descripcion");
                 Timestamp tiempo = rs.getTimestamp("tiempo");
-                int id_derivador = rs.getInt("id_dispositivo");
+                int id_derivador = rs.getInt("id_derivador");
                 float latitud = rs.getFloat("latitud");
                 float longitud = rs.getFloat("longitud");
                 float elevacion = rs.getFloat("elevacion");
