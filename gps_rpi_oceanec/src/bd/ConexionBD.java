@@ -355,6 +355,44 @@ public class ConexionBD {
         return registro;
     }
     
+    public boolean eliminarDerivador(int id) {
+        try{
+            PreparedStatement st = null;
+            st = con.prepareStatement("DELETE FROM dispositivo WHERE id = ?");                        
+            st.setInt(1,id);         
+            int n = st.executeUpdate();
+            if(n==0){
+                return false;
+            }
+            st.close();                        
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            return false;
+        } 
+    }
+    
+    public boolean eliminarUsuario(int id) {
+        try{
+            PreparedStatement st = null;
+            st = con.prepareStatement("DELETE FROM usuario WHERE id = ?");                        
+            st.setInt(1,id);         
+            int n = st.executeUpdate();
+            if(n==0){
+                return false;
+            }
+            st.close();                        
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            return false;
+        } 
+    }
+    
     /*
     public boolean ingresarOperador(dispositivo ubi) {
         try{

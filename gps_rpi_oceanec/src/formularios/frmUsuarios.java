@@ -42,13 +42,12 @@ public class frmUsuarios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbUsuarios = new javax.swing.JTable();
         tbNuevo = new javax.swing.JButton();
-        btEditar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento Usuarios");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "MAC", "Nombre" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "Cuenta", "Nombre", "Cedula", "Telefono", "Rol" }));
 
         btConsultar.setText("Consultar");
         btConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,9 +86,12 @@ public class frmUsuarios extends javax.swing.JFrame {
             }
         });
 
-        btEditar.setText("Editar");
-
         btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,8 +104,6 @@ public class frmUsuarios extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(btEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btEditar)
-                        .addGap(150, 150, 150)
                         .addComponent(tbNuevo)
                         .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
@@ -134,7 +134,6 @@ public class frmUsuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbNuevo)
-                    .addComponent(btEditar)
                     .addComponent(btEliminar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -152,6 +151,26 @@ public class frmUsuarios extends javax.swing.JFrame {
         frmIngresarUsuarios nuevo = new frmIngresarUsuarios();
         nuevo.setVisible(true);
     }//GEN-LAST:event_tbNuevoActionPerformed
+
+    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+        // TODO add your handling code here:
+        if (seleccionEliminacionValida()){
+            //ConexionBase c = new ConexionBase();
+            ConexionBD c = new ConexionBD();
+            try{
+                c.conectar();
+                int filas[] =tbUsuarios.getSelectedRows();
+                    for (int i = 0; i < filas.length; i++) {
+                        int fila = filas[i];
+                        String id = tbUsuarios.getValueAt(fila,0).toString();
+                        c.eliminarUsuario(Integer.parseInt(id));
+                    }
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            c.desconectar();
+        }
+    }//GEN-LAST:event_btEliminarActionPerformed
 
     public void consultarRegistro(){
         String tipo = cbTipo.getSelectedItem().toString();
@@ -179,6 +198,18 @@ public class frmUsuarios extends javax.swing.JFrame {
                             }
                         }else if(tipo.equals("Cuenta")){
                             if(user.getCuenta().toUpperCase().contains(descripcion.toUpperCase())){
+                                res.add(user);
+                            }
+                        }else if(tipo.equals("Cedula")){
+                            if(user.getCedula().toUpperCase().contains(descripcion.toUpperCase())){
+                                res.add(user);
+                            }
+                        }else if(tipo.equals("Telefono")){
+                            if(user.getTelefono().toUpperCase().contains(descripcion.toUpperCase())){
+                                res.add(user);
+                            }
+                        }else if(tipo.equals("Rol")){
+                            if(user.getRol().toUpperCase().contains(descripcion.toUpperCase())){
                                 res.add(user);
                             }
                         }else{
@@ -215,10 +246,22 @@ public class frmUsuarios extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    private boolean seleccionEliminacionValida(){ 
+        int n = tbUsuarios.getSelectedRowCount();
+        if(n==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro para eliminar","Eliminación",JOptionPane.ERROR_MESSAGE);
+            return false;        
+        }
+        int op = JOptionPane.showConfirmDialog(this, "Está seguro de eliminar los registros seleccionados?","Eliminación",JOptionPane.YES_NO_OPTION);
+        if(op==0)
+            return true;
+        else
+            return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConsultar;
-    private javax.swing.JButton btEditar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JLabel jLabel1;

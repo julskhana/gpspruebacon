@@ -40,7 +40,6 @@ public class frmDerivadores extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDerivador = new javax.swing.JTable();
         tbNuevo = new javax.swing.JButton();
-        btEditar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -85,9 +84,12 @@ public class frmDerivadores extends javax.swing.JFrame {
             }
         });
 
-        btEditar.setText("Editar");
-
         btEliminar.setText("Eliminar");
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,8 +102,6 @@ public class frmDerivadores extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(btEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btEditar)
-                        .addGap(150, 150, 150)
                         .addComponent(tbNuevo)
                         .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
@@ -132,7 +132,6 @@ public class frmDerivadores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbNuevo)
-                    .addComponent(btEditar)
                     .addComponent(btEliminar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -150,6 +149,26 @@ public class frmDerivadores extends javax.swing.JFrame {
         frmIngresarDerivador inder = new frmIngresarDerivador();
         inder.setVisible(true);
     }//GEN-LAST:event_tbNuevoActionPerformed
+
+    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+        // TODO add your handling code here:
+        if (seleccionEliminacionValida()){
+            //ConexionBase c = new ConexionBase();
+            ConexionBD c = new ConexionBD();
+            try{
+                c.conectar();
+                int filas[] =tbDerivador.getSelectedRows();
+                    for (int i = 0; i < filas.length; i++) {
+                        int fila = filas[i];
+                        String id = tbDerivador.getValueAt(fila,0).toString();
+                        c.eliminarDerivador(Integer.parseInt(id));
+                    }
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            c.desconectar();
+        }
+    }//GEN-LAST:event_btEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,10 +230,22 @@ public class frmDerivadores extends javax.swing.JFrame {
             System.out.println("consulta de registros derivadores: "+e);
         }
     }
+    
+    private boolean seleccionEliminacionValida(){ 
+        int n = tbDerivador.getSelectedRowCount();
+        if(n==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro para eliminar","Eliminación",JOptionPane.ERROR_MESSAGE);
+            return false;        
+        }
+        int op = JOptionPane.showConfirmDialog(this, "Está seguro de eliminar los registros seleccionados?","Eliminación",JOptionPane.YES_NO_OPTION);
+        if(op==0)
+            return true;
+        else
+            return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
-    private javax.swing.JButton btEditar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JLabel jLabel1;

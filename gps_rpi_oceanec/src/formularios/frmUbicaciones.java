@@ -43,7 +43,7 @@ public class frmUbicaciones extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizar Ubicaciones GPS");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "Latitud", "Longitud", "Fecha", "Derivador" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "Latitud", "Longitud", "Derivador" }));
 
         btBuscar.setText("Consultar");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,8 +143,8 @@ public class frmUbicaciones extends javax.swing.JFrame {
                             if(String.valueOf(ubi.getElevacion()).equals(descripcion)){
                                 res.add(ubi);
                             }
-                        }else if(tipo.equals("Tiempo")){
-                            if(String.valueOf(ubi.getTiempo()).contains(descripcion)){
+                        }else if(tipo.equals("Derivador")){
+                            if(String.valueOf(ubi.getId_dispositivo()).contains(descripcion)){
                                 res.add(ubi);
                             }
                         }else{
@@ -181,6 +181,9 @@ public class frmUbicaciones extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
