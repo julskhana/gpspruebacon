@@ -47,8 +47,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         mAcciones = new javax.swing.JMenu();
         mnVerDerivador = new javax.swing.JMenuItem();
         mnVerUbicaciones = new javax.swing.JMenuItem();
-        mayuda = new javax.swing.JMenu();
-        mnAcerdaDe = new javax.swing.JMenuItem();
+        mAcercaDe = new javax.swing.JMenu();
+        mnAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal - Derivador GPS");
@@ -122,12 +122,22 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mAcciones);
 
-        mayuda.setText("Ayuda");
+        mAcercaDe.setText("Información");
+        mAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAcercaDeActionPerformed(evt);
+            }
+        });
 
-        mnAcerdaDe.setText("Acerca De");
-        mayuda.add(mnAcerdaDe);
+        mnAcercaDe.setText("Acerca De...");
+        mnAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnAcercaDeActionPerformed(evt);
+            }
+        });
+        mAcercaDe.add(mnAcercaDe);
 
-        jMenuBar1.add(mayuda);
+        jMenuBar1.add(mAcercaDe);
 
         setJMenuBar(jMenuBar1);
 
@@ -197,6 +207,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         cuenta.setVisible(true);
     }//GEN-LAST:event_mnCuentaActionPerformed
 
+    private void mAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAcercaDeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mAcercaDeActionPerformed
+
+    private void mnAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAcercaDeActionPerformed
+        // TODO add your handling code here:
+        frmAcercaDe ad = new frmAcercaDe();
+        ad.setVisible(true);
+    }//GEN-LAST:event_mnAcercaDeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,10 +225,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu mAcciones;
+    private javax.swing.JMenu mAcercaDe;
     private javax.swing.JMenu mArchivo;
     private javax.swing.JMenu mMantenimiento;
-    private javax.swing.JMenu mayuda;
-    private javax.swing.JMenuItem mnAcerdaDe;
+    private javax.swing.JMenuItem mnAcercaDe;
     private javax.swing.JMenuItem mnCuenta;
     private javax.swing.JMenuItem mnDerivadores;
     private javax.swing.JMenuItem mnSalir;
