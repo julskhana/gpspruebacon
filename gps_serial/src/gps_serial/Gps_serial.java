@@ -64,13 +64,17 @@ public class Gps_serial {
                         //ingresando ubicacion a la basede datos
                         if(c.ingresarUbicacion(u)){
                             System.out.println("Datos ingresados...");
-                            if (latitudf < -0.93f){
-                                System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
-                                evento ev = new evento("Rango","El dispisitivo esta fuera de rango.", u.getLatitud(), u.getLongitud(), u.getElevacion(), 1);
-                                c.ingresarEvento(ev);
-                            }
                         }else{
                             System.out.println("Error, datos no ingresados...");
+                        }
+                        if (latitudf < -0.93f){
+                            System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
+                            evento ev = new evento("Rango","El dispisitivo esta fuera de rango.", latitudf, longitudf, alturaf, 1);
+                            if(c.ingresarEvento(ev)){
+                                System.out.println("evento ingresado");
+                            }else{
+                                System.out.println("Error al ingresar el evento");
+                            }
                         }
                     }catch(Exception e){
                         System.out.println("Error: "+e);
