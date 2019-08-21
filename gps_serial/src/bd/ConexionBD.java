@@ -64,6 +64,26 @@ public class ConexionBD {
         }
     }
             
+    public boolean ingresarEvento(evento ev) {
+        try{
+            PreparedStatement st=null;
+            st = con.prepareStatement("INSERT INTO evento (tipo,descripcion,latitud,longitud,elevacion,id_derivador) VALUES(?,?,?,?,?,?);");
+            st.setString(1,ev.getTipo());
+            st.setString(2,ev.getDescripcion());
+            st.setFloat(3,ev.getLatitud());
+            st.setFloat(4,ev.getLongitud());
+            st.setFloat(5,ev.getElevacion());
+            st.setInt(6,ev.getId_derivador());
+            st.executeUpdate();
+            st.close();
+            System.out.println("Se ingreso el evento exitosamente...");
+            return true;
+        }catch (SQLException ee){
+            System.out.println("Error al ingresar el evento\n"+ee);
+            return false;
+        }
+    }
+    
     /*
     public boolean ingresarOperador(dispositivo ubi) {
         try{

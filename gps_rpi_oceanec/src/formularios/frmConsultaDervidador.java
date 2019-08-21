@@ -23,7 +23,7 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
     /**
      * Creates new form consulta
      */
-    public static int repetidor = 0;
+    public static int repetidor = 1;
     
     public frmConsultaDervidador() {
         initComponents();
@@ -223,8 +223,6 @@ public class frmConsultaDervidador extends javax.swing.JFrame {
                 c.ingresarUbicacion(u);
                 if (Float.valueOf(txlatitud.getText()) < -0.93f){
                     System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
-                    evento ev = new evento("Rango","El dispisitivo esta fuera de rango.", u.getLatitud(), u.getLongitud(), u.getElevacion(), repetidor);
-                    c.ingresarEvento(ev);
                     JOptionPane.showMessageDialog(this,"El dispositivo esta fuera de la zona permitida.","Alerta GPS",JOptionPane.ERROR_MESSAGE);
                 }
                 c.desconectar();

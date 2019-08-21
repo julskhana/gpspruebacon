@@ -8,7 +8,7 @@ package gps_serial;
 import bd.ConexionBD;
 import java.io.*;
 import java.sql.Timestamp;
-import objetos.ubicacion;
+import objetos.*;
 //import java.util.*;
 
 public class Gps_serial {
@@ -64,6 +64,11 @@ public class Gps_serial {
                         //ingresando ubicacion a la basede datos
                         if(c.ingresarUbicacion(u)){
                             System.out.println("Datos ingresados...");
+                            if (latitudf < -0.93f){
+                                System.out.println("\nAlerta - El dispisitivo esta fuera de rango.\n");
+                                evento ev = new evento("Rango","El dispisitivo esta fuera de rango.", u.getLatitud(), u.getLongitud(), u.getElevacion(), 1);
+                                c.ingresarEvento(ev);
+                            }
                         }else{
                             System.out.println("Error, datos no ingresados...");
                         }

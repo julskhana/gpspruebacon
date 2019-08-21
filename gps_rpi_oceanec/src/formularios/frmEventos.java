@@ -9,7 +9,7 @@ import bd.ConexionBD;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import objetos.dispositivo;
+import objetos.evento;
 
 /**
  *
@@ -43,7 +43,7 @@ public class frmEventos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizar Eventos GPS");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "MAC", "Nombre" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "ID", "Tipo", "Descripcion", "Dispositivo" }));
 
         btBuscar.setText("Consultar");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -56,17 +56,17 @@ public class frmEventos extends javax.swing.JFrame {
 
         tbEventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Identificador", "Tipo", "Descripcion", "Fecha Hora", "Dispositivo"
+                "Identificador", "Tipo", "Descripcion", "Fecha Hora", "Dispositivo", "Latitud", "Longitud", "Elevacion"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -92,7 +92,7 @@ public class frmEventos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,8 +104,8 @@ public class frmEventos extends javax.swing.JFrame {
                     .addComponent(btBuscar)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,6 +114,13 @@ public class frmEventos extends javax.swing.JFrame {
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
         
+    }//GEN-LAST:event_btBuscarActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+
+    public void consultarRegistro(){
         String tipo = cbTipo.getSelectedItem().toString();
         String descripcion = txDescripcion.getText();        
         //consultar
@@ -122,24 +129,28 @@ public class frmEventos extends javax.swing.JFrame {
             try{
                 ConexionBD c = new ConexionBD();
                 c.conectar();
-                ArrayList<dispositivo> reg = c.consultarDispositivos(tipo,"dispositivo");
-                ArrayList<dispositivo> res = new ArrayList<dispositivo>();
+                ArrayList<evento> reg = c.consultarEventos(tipo,"evento");
+                ArrayList<evento> res = new ArrayList<evento>();
                 //Consultar tipo y descripcion
                 if (tipo.equals("Todos")){
                         res = reg;
                 }else{
-                    for (dispositivo disp:reg){
+                    for (evento even:reg){
                         if(tipo.equals("ID")&&(descripcion.length()>0)){
-                            if(String.valueOf(disp.getId()).equals(descripcion)){
-                                res.add(disp);
+                            if(String.valueOf(even.getId()).equals(descripcion)){
+                                res.add(even);
                             }
-                        }else if(tipo.equals("MAC")){
-                            if(disp.getMac().toUpperCase().contains(descripcion.toUpperCase())){
-                                res.add(disp);
+                        }else if(tipo.equals("Tipo")){
+                            if(even.getTipo().toUpperCase().contains(descripcion.toUpperCase())){
+                                res.add(even);
                             }
-                        }else if(tipo.equals("Nombre")){
-                            if(disp.getNombre().toUpperCase().contains(descripcion.toUpperCase())){
-                                res.add(disp);
+                        }else if(tipo.equals("Descripcion")){
+                            if(even.getDescripcion().toUpperCase().contains(descripcion.toUpperCase())){
+                                res.add(even);
+                            }
+                        }else if(tipo.equals("Dispositivo")){
+                            if(String.valueOf(even.getId_derivador()).equals(descripcion)){
+                                res.add(even);
                             }
                         }else{
                             JOptionPane.showMessageDialog(this,"Descripcion vacia.","Consulta Invalida",JOptionPane.ERROR_MESSAGE);
@@ -152,28 +163,28 @@ public class frmEventos extends javax.swing.JFrame {
                 dtm.setRowCount(0);
                 
                 //recorriendo base de datos
-                for (dispositivo d:res){
-                    Object[] fila = new Object[4];
+                for (evento d:res){
+                    Object[] fila = new Object[8];
                     fila[0] = d.getId();
-                    fila[1] = d.getMac();
-                    fila[2] = d.getNombre();
-                    fila[3] = d.getDescripcion();
+                    fila[1] = d.getTipo();
+                    fila[2] = d.getDescripcion();
+                    fila[3] = d.getTiempo();
+                    fila[4] = d.getId_derivador();
+                    fila[5] = d.getLatitud();
+                    fila[6] = d.getLongitud();
+                    fila[7] = d.getElevacion();
                     dtm.addRow(fila);
                 }
             c.desconectar();
             }catch (Exception e){
-                System.out.println("error al consultar derivadores"+e);
+                System.out.println("error al consultar eventos"+e);
             }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar derivadores","Consulta",JOptionPane.ERROR_MESSAGE);
-            System.out.println("consulta de registros derivadores: "+e);
+            JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar eventos","Consulta",JOptionPane.ERROR_MESSAGE);
+            System.out.println("consulta de registros eventos: "+e);
         }
-    }//GEN-LAST:event_btBuscarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
     private javax.swing.JComboBox<String> cbTipo;

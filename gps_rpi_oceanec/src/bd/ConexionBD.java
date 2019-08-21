@@ -219,16 +219,17 @@ public class ConexionBD {
             
             while (rs.next()){
                 int id = rs.getInt("id");
+                String tipo_eve = rs.getString("tipo");
+                String descripcion = rs.getString("descripcion");
+                Timestamp tiempo = rs.getTimestamp("tiempo");
+                int id_derivador = rs.getInt("id_dispositivo");
                 float latitud = rs.getFloat("latitud");
                 float longitud = rs.getFloat("longitud");
                 float elevacion = rs.getFloat("elevacion");
-                Timestamp tiempo = rs.getTimestamp("tiempo");
-                int id_derivador = rs.getInt("id_dispositivo");
                 
-                evento eve = new evento(id, tipo, tipo, tipo, id_derivador, latitud, longitud, elevacion);
-                //ubicacion ubi = new ubicacion(id, latitud, longitud, elevacion, tiempo, id_derivador);
+                evento eve = new evento(id, tipo_eve, descripcion, String.valueOf(tiempo), id_derivador, latitud, longitud, elevacion);
                 
-                //registro.add(ubi);
+                registro.add(eve);
             }
             System.out.println("Eventos consultados...");
         }catch (SQLException e){
